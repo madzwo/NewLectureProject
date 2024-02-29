@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 710642733916429196}
   m_Layer: 0
   m_Name: YellowBillion
-  m_TagString: Untagged
+  m_TagString: yellowBillion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

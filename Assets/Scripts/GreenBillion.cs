@@ -14,15 +14,20 @@ public class GreenBillion : MonoBehaviour
     public GameObject targetFlag;
     public GameObject innerCircle;
 
+    public Transform turretTransform;
+    public GameObject yellowBillion;
+
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        AimTurret();
         greenFlags = GameObject.FindGameObjectsWithTag("greenFlag");
 
         //determine where billion moves
@@ -98,5 +103,24 @@ public class GreenBillion : MonoBehaviour
             health = 0;
             Destroy(gameObject);
         }
+    }
+
+    public void AimTurret()
+    {
+        if (turretTransform != null)
+        {
+
+            yellowBillion = GameObject.FindGameObjectWithTag("yellowBillion");
+            
+
+            // Calculate the direction to the square
+            Vector3 directionToSquare = yellowBillion.transform.position - turretTransform.position;
+
+            // Calculate the angle in degrees
+            float angle = Mathf.Atan2(directionToSquare.y, directionToSquare.x) * Mathf.Rad2Deg;
+
+            // Set the rotation directly (only around Z-axis)
+            turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
+        } 
     }
 }

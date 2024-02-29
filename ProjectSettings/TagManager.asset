@@ -6,6 +6,8 @@ TagManager:
   tags:
   - greenFlag
   - yellowFlag
+  - square
+  - yellowBillion
   layers:
   - Default
   - TransparentFX
