@@ -8,6 +8,11 @@ TagManager:
   - yellowFlag
   - square
   - yellowBillion
+  - orangeBillion
+  - blueBillion
+  - greenBillion
+  - blueFlag
+  - orangeFlag
   layers:
   - Default
   - TransparentFX

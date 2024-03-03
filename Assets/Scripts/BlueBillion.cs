@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YellowBillion : MonoBehaviour
+public class BlueBillion : MonoBehaviour
 {
     public float billionSpeed;
     public float billionAcc;
@@ -10,14 +10,14 @@ public class YellowBillion : MonoBehaviour
     public float health;
     public float maxHealth;
 
-    public GameObject[] yellowFlags;
+    public GameObject[] blueFlags;
     public GameObject targetFlag;
     public GameObject innerCircle;
 
     public Transform turretTransform;
-    public GameObject blueBillion;
-    public GameObject orangeBillion;
     public GameObject greenBillion;
+    public GameObject yellowBillion;
+    public GameObject orangeBillion;
     public GameObject targetBillion;
 
     public float shootingDistance;
@@ -25,36 +25,37 @@ public class YellowBillion : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         AimTurret();
-        yellowFlags = GameObject.FindGameObjectsWithTag("yellowFlag");
+        blueFlags = GameObject.FindGameObjectsWithTag("blueFlag");
 
         //determine where billion moves
-        if (yellowFlags.Length != 0)
+        if (blueFlags.Length != 0)
         {
             //if there is one flag, it is the target flag
-            if (yellowFlags.Length == 1)
+            if (blueFlags.Length == 1)
             {
-                targetFlag = yellowFlags[0];
-            }
+                targetFlag = blueFlags[0];
+            } 
             //if there are two flags determine which is closer
             else 
             {
-                if ((Vector2.Distance(this.transform.position, yellowFlags[0].transform.position)) < (Vector2.Distance(this.transform.position, yellowFlags[1].transform.position)))
+                if ((Vector2.Distance(this.transform.position, blueFlags[0].transform.position)) < (Vector2.Distance(this.transform.position, blueFlags[1].transform.position)))
                 {
-                    targetFlag = yellowFlags[0];
+                    targetFlag = blueFlags[0];
                 }
                 else
                 {
-                    targetFlag = yellowFlags[1];
+                    targetFlag = blueFlags[1];
                 }
             } 
+        
 
+            //move towards target flag
             Vector2 direction = targetFlag.transform.position - transform.position;
             if (Vector2.Distance(this.transform.position, targetFlag.transform.position) > .2)
             {
@@ -72,39 +73,39 @@ public class YellowBillion : MonoBehaviour
             {
                 billionSpeed = 0;
             } 
-        }
-        
+        } 
+
         if(Input.GetMouseButtonDown(0) && Vector2.Distance(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < .1)
-            {
-                health -= 1;
+        {
+            health -= 1;
 
-                if (health == 5)
-                {
-                    innerCircle.gameObject.transform.localScale = new Vector3(0.9f, 0.9f, 0.0f);
-                }
-                if (health == 4)
-                {
-                    innerCircle.gameObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.0f);
-                }
-                if (health == 3)
-                {
-                    innerCircle.gameObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.0f);
-                }
-                if (health == 2)
-                {
-                    innerCircle.gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 0.0f);
-                }
-                if (health == 1)
-                {
-                    innerCircle.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.0f);
-                }
-            }
-
-            if(health <= 0) 
+            if (health == 5)
             {
-                health = 0;
-                Destroy(gameObject);
+                innerCircle.gameObject.transform.localScale = new Vector3(0.9f, 0.9f, 0.0f);
             }
+            if (health == 4)
+            {
+                innerCircle.gameObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.0f);
+            }
+            if (health == 3)
+            {
+                innerCircle.gameObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.0f);
+            }
+            if (health == 2)
+            {
+                innerCircle.gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 0.0f);
+            }
+            if (health == 1)
+            {
+                innerCircle.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.0f);
+            }
+        }
+
+        if(health <= 0) 
+        {
+            health = 0;
+            Destroy(gameObject);
+        }
     }
 
     public void AimTurret()
@@ -113,34 +114,31 @@ public class YellowBillion : MonoBehaviour
         {
             targetBillion = null;
 
-            blueBillion = GameObject.FindGameObjectWithTag("blueBillion");
-            orangeBillion = GameObject.FindGameObjectWithTag("orangeBillion");
             greenBillion = GameObject.FindGameObjectWithTag("greenBillion");
+            yellowBillion = GameObject.FindGameObjectWithTag("yellowBillion");
+            orangeBillion = GameObject.FindGameObjectWithTag("orangeBillion");
 
             // figure out target billion
-            if (Vector2.Distance(this.transform.position, blueBillion.transform.position) < Vector2.Distance(this.transform.position, orangeBillion.transform.position))
+            if (Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, yellowBillion.transform.position))
             {
-                if(Vector2.Distance(this.transform.position, blueBillion.transform.position) < Vector2.Distance(this.transform.position, greenBillion.transform.position))
-                {
-                    targetBillion = blueBillion;
-                }
-                else
+                if (Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, orangeBillion.transform.position))
                 {
                     targetBillion = greenBillion;
                 }
+                else
+                {
+                    targetBillion = orangeBillion;
+                }
             }
-            else if(Vector2.Distance(this.transform.position, orangeBillion.transform.position) < Vector2.Distance(this.transform.position, greenBillion.transform.position))
+            else if (Vector2.Distance(this.transform.position, yellowBillion.transform.position) < Vector2.Distance(this.transform.position, orangeBillion.transform.position))
             {
-                targetBillion = orangeBillion;
+                targetBillion = yellowBillion;
             }
             else
             {
-                targetBillion = greenBillion;
+                targetBillion = orangeBillion;
             }
 
-
-
-            
 
             // Calculate the direction to the billion
             Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;

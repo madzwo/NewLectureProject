@@ -16,15 +16,22 @@ public class GreenBillion : MonoBehaviour
 
     public Transform turretTransform;
     public GameObject yellowBillion;
+    public GameObject orangeBillion;
+    public GameObject blueBillion;
+    public GameObject targetBillion;
 
-    // Start is called before the first frame update
+    public float shootingDistance;
+    public float fireRate;
+    public float timeUntilFire;
+    public Transform firePoint;
+    public GameObject bulletPrefab;
+
     void Start()
     {
         health = maxHealth;
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         AimTurret();
@@ -103,24 +110,66 @@ public class GreenBillion : MonoBehaviour
             health = 0;
             Destroy(gameObject);
         }
+
+        if (timeUntilFire <= 0)
+        {
+                Fire();
+                timeUntilFire = fireRate;
+        }
+        else 
+        {
+            timeUntilFire -= Time.deltaTime;
+        }
     }
 
     public void AimTurret()
     {
         if (turretTransform != null)
         {
+            targetBillion = null;
 
             yellowBillion = GameObject.FindGameObjectWithTag("yellowBillion");
+            orangeBillion = GameObject.FindGameObjectWithTag("orangeBillion");
+            blueBillion = GameObject.FindGameObjectWithTag("blueBillion");
+
+            // figure out target billion
+            if (Vector2.Distance(this.transform.position, yellowBillion.transform.position) < Vector2.Distance(this.transform.position, orangeBillion.transform.position))
+            {
+                if(Vector2.Distance(this.transform.position, yellowBillion.transform.position) < Vector2.Distance(this.transform.position, blueBillion.transform.position))
+                {
+                    targetBillion = yellowBillion;
+                }
+                else
+                {
+                    targetBillion = blueBillion;
+                }
+            }
+            else if(Vector2.Distance(this.transform.position, orangeBillion.transform.position) < Vector2.Distance(this.transform.position, blueBillion.transform.position))
+            {
+                targetBillion = orangeBillion;
+            }
+            else
+            {
+                targetBillion = blueBillion;
+            }
             
 
-            // Calculate the direction to the square
-            Vector3 directionToSquare = yellowBillion.transform.position - turretTransform.position;
+            // Calculate the direction to the billion
+            Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
 
             // Calculate the angle in degrees
-            float angle = Mathf.Atan2(directionToSquare.y, directionToSquare.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(directionToBillion.y, directionToBillion.x) * Mathf.Rad2Deg;
 
-            // Set the rotation directly (only around Z-axis)
+            // Set the rotation directly around Z-axis
             turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
         } 
+    }
+
+    public void Fire()
+    {
+        // Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
+        // float angle = Mathf.Atan2(directionToBillion.y, directionToBillion.x) * Mathf.Rad2Deg;
+
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }
