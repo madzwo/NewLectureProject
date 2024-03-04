@@ -28,26 +28,26 @@ public class GameController : MonoBehaviour
         flagSpawnPoint.y += (float)0.375;
         flagSpawnPoint.z = 0;
         
-        //mouse + G to instantiate green flag and add it to the list
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.G))
+        //mouse + W to instantiate green flag and add it to the list
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.W))
         {
             GameObject flag = Instantiate(greenFlag, flagSpawnPoint, Quaternion.identity);
             greenFlags.Add(flag);
         }
-        //mouse + Y to instantiate yellow flag and add it to the list
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.Y))
+        //mouse + S to instantiate yellow flag and add it to the list
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.S))
         {
             GameObject flag = Instantiate(yellowFlag, flagSpawnPoint, Quaternion.identity);
             yellowFlags.Add(flag);
         }
-        //mouse + B to instantiate blue flag and add it to the list
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.B))
+        //mouse + E to instantiate blue flag and add it to the list
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.E))
         {
             GameObject flag = Instantiate(blueFlag, flagSpawnPoint, Quaternion.identity);
             blueFlags.Add(flag);
         }
-        //mouse + O to instantiate orange flag and add it to the list
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.O))
+        //mouse + D to instantiate orange flag and add it to the list
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.D))
         {
             GameObject flag = Instantiate(orangeFlag, flagSpawnPoint, Quaternion.identity);
             orangeFlags.Add(flag);
