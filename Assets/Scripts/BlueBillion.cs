@@ -70,7 +70,7 @@ public class BlueBillion : MonoBehaviour
             } else 
             {
                 // to stop them from vibrating
-                billionSpeed = 0.2f;
+                billionSpeed = 0.1f;
             }
             if (billionSpeed >= billionMaxSpeed)
             {
@@ -84,34 +84,7 @@ public class BlueBillion : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0) && Vector2.Distance(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < .1)
         {
-            health -= 1;
-
-            if (health == 5)
-            {
-                innerCircle.gameObject.transform.localScale = new Vector3(0.9f, 0.9f, 0.0f);
-            }
-            if (health == 4)
-            {
-                innerCircle.gameObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.0f);
-            }
-            if (health == 3)
-            {
-                innerCircle.gameObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.0f);
-            }
-            if (health == 2)
-            {
-                innerCircle.gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 0.0f);
-            }
-            if (health == 1)
-            {
-                innerCircle.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.0f);
-            }
-        }
-
-        if(health <= 0) 
-        {
-            health = 0;
-            Destroy(gameObject);
+            TakeDamage();
         }
     }
 
@@ -125,8 +98,59 @@ public class BlueBillion : MonoBehaviour
             yellowBillion = GameObject.FindGameObjectWithTag("yellowBillion");
             orangeBillion = GameObject.FindGameObjectWithTag("orangeBillion");
 
-            // figure out target billion
-            if (Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, yellowBillion.transform.position))
+                    // figure out target billion
+
+            // if two are null
+            if (yellowBillion == null && orangeBillion == null && greenBillion != null)
+            {
+                targetBillion = greenBillion;
+            }
+            else if (yellowBillion == null && orangeBillion != null && greenBillion == null)
+            {
+                targetBillion = orangeBillion;
+            }
+            else if (yellowBillion != null && orangeBillion == null && greenBillion == null)
+            {
+                targetBillion = yellowBillion;
+            }
+
+            // if one is null
+            else if (yellowBillion == null && orangeBillion != null && greenBillion != null)
+            {
+                if(Vector2.Distance(this.transform.position, orangeBillion.transform.position) < Vector2.Distance(this.transform.position, greenBillion.transform.position))
+                {
+                    targetBillion = orangeBillion;
+                } 
+                else
+                {
+                    targetBillion = greenBillion;
+                } 
+            }
+            else if (yellowBillion != null && orangeBillion != null && greenBillion == null)
+            {
+                if(Vector2.Distance(this.transform.position, yellowBillion.transform.position) < Vector2.Distance(this.transform.position, orangeBillion.transform.position))
+                {
+                    targetBillion = yellowBillion;
+                }
+                else
+                {
+                    targetBillion = orangeBillion;
+                }
+            }
+            else if (yellowBillion != null && orangeBillion == null && greenBillion != null)
+            {
+                if(Vector2.Distance(this.transform.position, yellowBillion.transform.position) < Vector2.Distance(this.transform.position, greenBillion.transform.position))
+                {
+                    targetBillion = yellowBillion;
+                }
+                else
+                {
+                    targetBillion = greenBillion;
+                }
+            }
+
+            // if none are null
+            else if (Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, yellowBillion.transform.position))
             {
                 if (Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, orangeBillion.transform.position))
                 {
@@ -147,26 +171,61 @@ public class BlueBillion : MonoBehaviour
             }
 
 
-            // Calculate the direction to the billion
-            Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
-
-            // Calculate the angle in degrees
-            float angle = Mathf.Atan2(directionToBillion.y, directionToBillion.x) * Mathf.Rad2Deg;
-
-            // Set the rotation directly around Z-axis
-            turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
-            
-            if (timeUntilFire <= 0)
+            if (targetBillion != null)
             {
-                Fire(targetBillion, directionToBillion);
-                timeUntilFire = fireRate;
-            }
-            else 
-            {
-                timeUntilFire -= Time.deltaTime;
+                // Calculate the direction to the billion
+                Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
+
+                // Calculate the angle in degrees
+                float angle = Mathf.Atan2(directionToBillion.y, directionToBillion.x) * Mathf.Rad2Deg;
+
+                // Set the rotation directly around Z-axis
+                turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+                if (timeUntilFire <= 0)
+                {
+                    Fire(targetBillion, directionToBillion);
+                    timeUntilFire = fireRate;
+                }
+                else 
+                {
+                    timeUntilFire -= Time.deltaTime;
+                }
             }
         }
     }   
+
+    public void TakeDamage()
+    {
+        health -= 1;
+
+        if (health == 5)
+        {
+            innerCircle.gameObject.transform.localScale = new Vector3(0.9f, 0.9f, 0.0f);
+        }
+        if (health == 4)
+        {
+            innerCircle.gameObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.0f);
+        }
+        if (health == 3)
+        {
+            innerCircle.gameObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.0f);
+        }
+        if (health == 2)
+        {
+            innerCircle.gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 0.0f);
+        }
+        if (health == 1)
+        {
+            innerCircle.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.0f);
+        }
+
+        if(health <= 0) 
+        {
+            health = 0;
+            Destroy(gameObject);
+        }    
+    }
 
     public void Fire(GameObject target, Vector3 direction)
     {
@@ -176,5 +235,13 @@ public class BlueBillion : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
 
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "yellowBullet")
+        {
+            TakeDamage();
+        }        
     }
 }

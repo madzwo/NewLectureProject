@@ -15,6 +15,9 @@ TagManager:
   - orangeFlag
   - greenBullet
   - border
+  - blueBullet
+  - yellowBullet
+  - orangeBullet
   layers:
   - Default
   - TransparentFX

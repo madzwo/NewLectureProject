@@ -9,8 +9,6 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject blueFlag;
     [SerializeField] GameObject orangeFlag;
 
-
-
     Vector3 flagSpawnPoint;
 
     public List<GameObject> greenFlags = new List<GameObject>();
@@ -18,13 +16,11 @@ public class GameController : MonoBehaviour
     public List<GameObject> blueFlags = new List<GameObject>();
     public List<GameObject> orangeFlags = new List<GameObject>();
 
-
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         //makes mouse position work with camera    
@@ -44,13 +40,13 @@ public class GameController : MonoBehaviour
             GameObject flag = Instantiate(yellowFlag, flagSpawnPoint, Quaternion.identity);
             yellowFlags.Add(flag);
         }
-        //mouse + B to instantiate yellow flag and add it to the list
+        //mouse + B to instantiate blue flag and add it to the list
         if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.B))
         {
             GameObject flag = Instantiate(blueFlag, flagSpawnPoint, Quaternion.identity);
-            yellowFlags.Add(flag);
+            blueFlags.Add(flag);
         }
-        //mouse + O to instantiate yellow flag and add it to the list
+        //mouse + O to instantiate orange flag and add it to the list
         if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.O))
         {
             GameObject flag = Instantiate(orangeFlag, flagSpawnPoint, Quaternion.identity);

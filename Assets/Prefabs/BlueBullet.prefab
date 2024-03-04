@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2525097509227275163}
   - component: {fileID: 3959633529549935349}
   - component: {fileID: 6181901614800030010}
+  - component: {fileID: 1198503914776033976}
   m_Layer: 0
   m_Name: BlueBullet
-  m_TagString: greenBullet
+  m_TagString: blueBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,3 +159,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1198503914776033976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7109592236991123235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf7b9d9806e34e6386cacb29b7eb38f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletLife: 4

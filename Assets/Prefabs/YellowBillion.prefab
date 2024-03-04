@@ -344,12 +344,12 @@ MonoBehaviour:
   orangeBillion: {fileID: 0}
   greenBillion: {fileID: 0}
   targetBillion: {fileID: 0}
-  shootingDistance: 3.5
+  shootingDistance: 3.8
   fireRate: 2
   timeUntilFire: 0
   firePoint: {fileID: 8369498746966676674}
   bulletPrefab: {fileID: 7109592236991123235, guid: a2e12a7e0ca004a14925916e4ca3bc32, type: 3}
-  bulletSpeed: 0.5
+  bulletSpeed: 0.8
   bulletLife: 0
 --- !u!1 &7170147446143574954
 GameObject:

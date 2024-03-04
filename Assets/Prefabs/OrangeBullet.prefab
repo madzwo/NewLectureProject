@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6917943465754463598}
   m_Layer: 0
   m_Name: OrangeBullet
-  m_TagString: greenBullet
+  m_TagString: orangeBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
