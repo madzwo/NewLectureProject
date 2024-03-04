@@ -265,7 +265,7 @@ MonoBehaviour:
   timeUntilFire: 0
   firePoint: {fileID: 6317380482550500582}
   bulletPrefab: {fileID: 7109592236991123235, guid: 227b5371d2a4e4926a485bae9c7f6b52, type: 3}
-  bulletSpeed: 0.5
+  bulletSpeed: 0.8
   bulletLife: 0
 --- !u!1 &6632454851319110412
 GameObject:
