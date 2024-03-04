@@ -21,14 +21,18 @@ public class YellowBillion : MonoBehaviour
     public GameObject targetBillion;
 
     public float shootingDistance;
+    public float fireRate;
+    public float timeUntilFire;
+    public Transform firePoint;
+    public GameObject bulletPrefab;
+    public float bulletSpeed;
+    public float bulletLife;
 
     void Start()
     {
         health = maxHealth;
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
         AimTurret();
@@ -150,6 +154,41 @@ public class YellowBillion : MonoBehaviour
 
             // Set the rotation directly around Z-axis
             turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+            if (timeUntilFire <= 0)
+            {
+                Fire(targetBillion, directionToBillion);
+                timeUntilFire = fireRate;
+            }
+            else 
+            {
+                timeUntilFire -= Time.deltaTime;
+            }
         } 
     }
+
+    public void TakeDamage()
+    {
+        health -= 1;
+    }
+
+    public void Fire(GameObject target, Vector3 direction)
+    {
+        if (Vector2.Distance(this.transform.position, target.transform.position) < shootingDistance)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, turretTransform.rotation);
+            bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
+
+        }
+
+    }
+
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.gameObject.tag == "greenBullet")
+    //     {
+    //         Debug.Log("hit");
+    //     }        
+    // }
+    
 }

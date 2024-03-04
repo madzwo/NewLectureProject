@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   billion: {fileID: 6144175037319675246, guid: 1b59f3f72daca4e899efa2fd40262ec9, type: 3}
   spawnPoint: {fileID: 2808002952429544986}
-  spawnRate: 5
+  spawnRate: 10
   flag: {fileID: 3841461187133190014, guid: 880f87face7a1439f81f6ca37ff18a7c, type: 3}
 --- !u!50 &5603027653123759988
 Rigidbody2D:

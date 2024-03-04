@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   billion: {fileID: 6144175037319675246, guid: 81c693ca323af42d1b29c4c0a554012e, type: 3}
   spawnPoint: {fileID: 6725372011876753794}
-  spawnRate: 5
+  spawnRate: 10
   flag: {fileID: 0}
 --- !u!50 &1900758054645863220
 Rigidbody2D:

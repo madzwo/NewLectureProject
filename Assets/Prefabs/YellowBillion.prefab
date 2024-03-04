@@ -344,7 +344,44 @@ MonoBehaviour:
   orangeBillion: {fileID: 0}
   greenBillion: {fileID: 0}
   targetBillion: {fileID: 0}
-  shootingDistance: 0
+  shootingDistance: 3.5
+  fireRate: 2
+  timeUntilFire: 0
+  firePoint: {fileID: 8369498746966676674}
+  bulletPrefab: {fileID: 7109592236991123235, guid: a2e12a7e0ca004a14925916e4ca3bc32, type: 3}
+  bulletSpeed: 0.5
+  bulletLife: 0
+--- !u!1 &7170147446143574954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8369498746966676674}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8369498746966676674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7170147446143574954}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.6000004, y: 0, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7287195929669161833}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9074605325701803036
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,5 +412,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5323168583611553465}
+  - {fileID: 8369498746966676674}
   m_Father: {fileID: 6562469898197319756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

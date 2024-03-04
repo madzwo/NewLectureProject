@@ -194,7 +194,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.19607843, g: 0.6862745, b: 0.19607843, a: 1}
+  m_Color: {r: 0.2, g: 0.6, b: 0.2, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   billion: {fileID: 6144175037319675246, guid: c845b0fbf359e45a984d45fa82346a40, type: 3}
   spawnPoint: {fileID: 9207717255103578811}
-  spawnRate: 5
+  spawnRate: 10
   flag: {fileID: 5855980077445531576, guid: ce9307eed48514cfca99540313d64edc, type: 3}
 --- !u!50 &2183978886805787068
 Rigidbody2D:

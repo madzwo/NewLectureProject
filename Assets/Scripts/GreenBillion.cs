@@ -25,6 +25,8 @@ public class GreenBillion : MonoBehaviour
     public float timeUntilFire;
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public float bulletSpeed;
+    public float bulletLife; 
 
     void Start()
     {
@@ -111,15 +113,6 @@ public class GreenBillion : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (timeUntilFire <= 0)
-        {
-                Fire();
-                timeUntilFire = fireRate;
-        }
-        else 
-        {
-            timeUntilFire -= Time.deltaTime;
-        }
     }
 
     public void AimTurret()
@@ -162,14 +155,30 @@ public class GreenBillion : MonoBehaviour
 
             // Set the rotation directly around Z-axis
             turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+            if (timeUntilFire <= 0)
+            {
+                Fire(targetBillion, directionToBillion);
+                timeUntilFire = fireRate;
+            }
+            else 
+            {
+                timeUntilFire -= Time.deltaTime;
+            }
         } 
     }
 
-    public void Fire()
+    public void Fire(GameObject target, Vector3 direction)
     {
-        // Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
-        // float angle = Mathf.Atan2(directionToBillion.y, directionToBillion.x) * Mathf.Rad2Deg;
+        if (Vector2.Distance(this.transform.position, target.transform.position) < shootingDistance)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, turretTransform.rotation);
+            bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
 
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        }
+
     }
+
+
+   
 }
