@@ -100,95 +100,100 @@ public class OrangeBillion : MonoBehaviour
 
                     // figure out target billion
 
-            // if two are null
-            if (yellowBillion == null && greenBillion == null && blueBillion != null)
+            // if all are null, wait for them to spawn
+            if (!(yellowBillion == null && greenBillion == null && blueBillion == null))
             {
-                targetBillion = blueBillion;
-            }
-            else if (yellowBillion == null && greenBillion != null && blueBillion == null)
-            {
-                targetBillion = greenBillion;
-            }
-            else if (yellowBillion != null && greenBillion == null && blueBillion == null)
-            {
-                targetBillion = yellowBillion;
-            }     
 
-            // if one is null
-            else if (yellowBillion == null && greenBillion != null && blueBillion != null)
-            {
-                if(Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, blueBillion.transform.position))
-                {
-                    targetBillion = greenBillion;
-                } 
-                else
+                // if two are null
+                if (yellowBillion == null && greenBillion == null && blueBillion != null)
                 {
                     targetBillion = blueBillion;
-                } 
-            }
-            else if (yellowBillion != null && greenBillion != null && blueBillion == null)
-            {
-                if(Vector2.Distance(this.transform.position, yellowBillion.transform.position) < Vector2.Distance(this.transform.position, greenBillion.transform.position))
-                {
-                    targetBillion = yellowBillion;
                 }
-                else
+                else if (yellowBillion == null && greenBillion != null && blueBillion == null)
                 {
                     targetBillion = greenBillion;
                 }
-            }
-            else if (yellowBillion != null && greenBillion == null && blueBillion != null)
-            {
-                if(Vector2.Distance(this.transform.position, yellowBillion.transform.position) < Vector2.Distance(this.transform.position, blueBillion.transform.position))
+                else if (yellowBillion != null && greenBillion == null && blueBillion == null)
                 {
                     targetBillion = yellowBillion;
+                }     
+
+                // if one is null
+                else if (yellowBillion == null && greenBillion != null && blueBillion != null)
+                {
+                    if(Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, blueBillion.transform.position))
+                    {
+                        targetBillion = greenBillion;
+                    } 
+                    else
+                    {
+                        targetBillion = blueBillion;
+                    } 
+                }
+                else if (yellowBillion != null && greenBillion != null && blueBillion == null)
+                {
+                    if(Vector2.Distance(this.transform.position, yellowBillion.transform.position) < Vector2.Distance(this.transform.position, greenBillion.transform.position))
+                    {
+                        targetBillion = yellowBillion;
+                    }
+                    else
+                    {
+                        targetBillion = greenBillion;
+                    }
+                }
+                else if (yellowBillion != null && greenBillion == null && blueBillion != null)
+                {
+                    if(Vector2.Distance(this.transform.position, yellowBillion.transform.position) < Vector2.Distance(this.transform.position, blueBillion.transform.position))
+                    {
+                        targetBillion = yellowBillion;
+                    }
+                    else
+                    {
+                        targetBillion = blueBillion;
+                    }
+                }
+                // if none are null       
+                else if (Vector2.Distance(this.transform.position, blueBillion.transform.position) < Vector2.Distance(this.transform.position, greenBillion.transform.position))
+                {
+                    if (Vector2.Distance(this.transform.position, blueBillion.transform.position) < Vector2.Distance(this.transform.position, yellowBillion.transform.position))
+                    {
+                        targetBillion = blueBillion;
+                    }
+                    else
+                    {
+                        targetBillion = yellowBillion;
+                    }
+                }
+                else if (Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, yellowBillion.transform.position))
+                {
+                    targetBillion = greenBillion;
                 }
                 else
                 {
-                    targetBillion = blueBillion;
-                }
-            }
-            // if none are null       
-            else if (Vector2.Distance(this.transform.position, blueBillion.transform.position) < Vector2.Distance(this.transform.position, greenBillion.transform.position))
-            {
-                if (Vector2.Distance(this.transform.position, blueBillion.transform.position) < Vector2.Distance(this.transform.position, yellowBillion.transform.position))
-                {
-                    targetBillion = blueBillion;
-                }
-                else
-                {
                     targetBillion = yellowBillion;
                 }
-            }
-            else if (Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, yellowBillion.transform.position))
-            {
-                targetBillion = greenBillion;
-            }
-            else
-            {
-                targetBillion = yellowBillion;
-            }
 
 
-            if (targetBillion != null)
-            {
-                // Calculate the direction to the billion
-                Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
-
-                // Calculate the angle in degrees
-                float angle = Mathf.Atan2(directionToBillion.y, directionToBillion.x) * Mathf.Rad2Deg;
-
-                // Set the rotation directly around Z-axis
-                turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
-
-                if (timeUntilFire <= 0)
+                if (targetBillion != null)
                 {
-                    Fire(targetBillion, directionToBillion);
-                    timeUntilFire = fireRate;
-                }
-                else 
-                {
-                    timeUntilFire -= Time.deltaTime;
+                    // Calculate the direction to the billion
+                    Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
+
+                    // Calculate the angle in degrees
+                    float angle = Mathf.Atan2(directionToBillion.y, directionToBillion.x) * Mathf.Rad2Deg;
+
+                    // Set the rotation directly around Z-axis
+                    turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+                    if (timeUntilFire <= 0)
+                    {
+                        Fire(targetBillion, directionToBillion);
+                        timeUntilFire = fireRate;
+                    }
+                    else 
+                    {
+                        timeUntilFire -= Time.deltaTime;
+                    }
                 }
             }
         } 
