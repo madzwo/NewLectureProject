@@ -66,7 +66,8 @@ public class YellowBillion : MonoBehaviour
                 billionSpeed += billionAcc;
             } else 
             {
-                billionSpeed -= billionAcc;
+                // to stop them from vibrating
+                billionSpeed = 0.2f;
             }
             if (billionSpeed >= billionMaxSpeed)
             {
@@ -180,7 +181,6 @@ public class YellowBillion : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
 
         }
-
     }
 
     // private void OnTriggerEnter2D(Collider2D collision)

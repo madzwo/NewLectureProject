@@ -219,7 +219,7 @@ MonoBehaviour:
   billion: {fileID: 6144175037319675246, guid: 81c693ca323af42d1b29c4c0a554012e, type: 3}
   spawnPoint: {fileID: 6725372011876753794}
   spawnRate: 10
-  flag: {fileID: 0}
+  flag: {fileID: 5855980077445531576, guid: bdc706d1ada43453488f5265537b7dea, type: 3}
 --- !u!50 &1900758054645863220
 Rigidbody2D:
   serializedVersion: 4

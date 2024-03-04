@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenBullet : MonoBehaviour
+public class BlueBullet : MonoBehaviour
 {
     public float bulletLife;
     private float timeTillDeath;
@@ -26,10 +26,9 @@ public class GreenBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {       
-        if (collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border")
+        if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "border")
         {
             Destroy(gameObject);
         }
     }
-
 }

@@ -21,6 +21,12 @@ public class BlueBillion : MonoBehaviour
     public GameObject targetBillion;
 
     public float shootingDistance;
+    public float fireRate;
+    public float timeUntilFire;
+    public Transform firePoint;
+    public GameObject bulletPrefab;
+    public float bulletSpeed;
+    public float bulletLife;
 
     void Start()
     {
@@ -63,7 +69,8 @@ public class BlueBillion : MonoBehaviour
                 billionSpeed += billionAcc;
             } else 
             {
-                billionSpeed -= billionAcc;
+                // to stop them from vibrating
+                billionSpeed = 0.2f;
             }
             if (billionSpeed >= billionMaxSpeed)
             {
@@ -148,6 +155,26 @@ public class BlueBillion : MonoBehaviour
 
             // Set the rotation directly around Z-axis
             turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
-        } 
+            
+            if (timeUntilFire <= 0)
+            {
+                Fire(targetBillion, directionToBillion);
+                timeUntilFire = fireRate;
+            }
+            else 
+            {
+                timeUntilFire -= Time.deltaTime;
+            }
+        }
+    }   
+
+    public void Fire(GameObject target, Vector3 direction)
+    {
+        if (Vector2.Distance(this.transform.position, target.transform.position) < shootingDistance)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, turretTransform.rotation);
+            bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
+
+        }
     }
 }

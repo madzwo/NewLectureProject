@@ -69,7 +69,8 @@ public class GreenBillion : MonoBehaviour
                 billionSpeed += billionAcc;
             } else 
             {
-                billionSpeed -= billionAcc;
+                // to stop them from vibrating
+                billionSpeed = 0.2f;
             }
             if (billionSpeed >= billionMaxSpeed)
             {
