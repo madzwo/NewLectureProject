@@ -344,7 +344,7 @@ MonoBehaviour:
   orangeBillion: {fileID: 0}
   greenBillion: {fileID: 0}
   targetBillion: {fileID: 0}
-  shootingDistance: 3.8
+  shootingDistance: 3.5
   fireRate: 1.5
   timeUntilFire: 0
   firePoint: {fileID: 8369498746966676674}

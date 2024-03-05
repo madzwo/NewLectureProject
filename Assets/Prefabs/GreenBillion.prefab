@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   billionSpeed: 0
   billionAcc: 0.0003
-  billionMaxSpeed: 1.5
+  billionMaxSpeed: 1.7
   health: 0
   maxHealth: 5
   greenFlags: []
@@ -260,13 +260,12 @@ MonoBehaviour:
   orangeBillion: {fileID: 0}
   blueBillion: {fileID: 0}
   targetBillion: {fileID: 0}
-  shootingDistance: 3.8
-  fireRate: 2
+  shootingDistance: 3.5
+  fireRate: 1.5
   timeUntilFire: 0
   firePoint: {fileID: 6317380482550500582}
   bulletPrefab: {fileID: 7109592236991123235, guid: 227b5371d2a4e4926a485bae9c7f6b52, type: 3}
   bulletSpeed: 0.8
-  bulletLife: 0
 --- !u!1 &6632454851319110412
 GameObject:
   m_ObjectHideFlags: 0
