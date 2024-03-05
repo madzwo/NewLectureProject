@@ -26,7 +26,6 @@ public class OrangeBillion : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public float bulletSpeed;
-    public float bulletLife;
 
     void Start()
     {
@@ -70,7 +69,7 @@ public class OrangeBillion : MonoBehaviour
             } else 
             {
                 // to stop them from vibrating
-                billionSpeed = 0.1f;            
+                billionSpeed = 0.1f;
             }
             if (billionSpeed >= billionMaxSpeed)
             {

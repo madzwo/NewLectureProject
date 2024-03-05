@@ -26,7 +26,6 @@ public class GreenBillion : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public float bulletSpeed;
-    public float bulletLife; 
 
     void Start()
     {
