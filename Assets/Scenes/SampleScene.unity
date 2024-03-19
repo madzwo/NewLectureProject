@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &286475615 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3136120073128483352, guid: 48443cace34c147838ea0617bf653377, type: 3}
+  m_PrefabInstance: {fileID: 5493530015234817486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &337761996 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6662857468752240547, guid: 37fbf4573c007424eb45df41c0d9d652, type: 3}
+  m_PrefabInstance: {fileID: 4444461670564402893}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &439220371
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +826,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1716203890 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2345969560135974220, guid: 41c74af2ae10a47d7b377fdb1c6c2d8d, type: 3}
+  m_PrefabInstance: {fileID: 5147398805514756441}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1962060838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,9 +1094,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5610502443278226927, guid: 37fbf4573c007424eb45df41c0d9d652, type: 3}
-      propertyPath: spawnRate
-      value: 10
+      propertyPath: fireRate
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5610502443278226927, guid: 37fbf4573c007424eb45df41c0d9d652, type: 3}
+      propertyPath: bulletSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610502443278226927, guid: 37fbf4573c007424eb45df41c0d9d652, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7759564528025836682, guid: ecc5491e69014433597457f75dffe50b, type: 3}
+    - target: {fileID: 5610502443278226927, guid: 37fbf4573c007424eb45df41c0d9d652, type: 3}
+      propertyPath: turretTransform
+      value: 
+      objectReference: {fileID: 337761996}
     - target: {fileID: 8442975363994804319, guid: 37fbf4573c007424eb45df41c0d9d652, type: 3}
       propertyPath: m_Name
       value: BlueBase
@@ -1140,17 +1167,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3166331612250729627, guid: 41c74af2ae10a47d7b377fdb1c6c2d8d, type: 3}
-      propertyPath: spawnRate
-      value: 10
+      propertyPath: fireRate
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 3515911885677830996, guid: 41c74af2ae10a47d7b377fdb1c6c2d8d, type: 3}
-      propertyPath: m_Color.g
-      value: 0.8
+    - target: {fileID: 3166331612250729627, guid: 41c74af2ae10a47d7b377fdb1c6c2d8d, type: 3}
+      propertyPath: bulletSpeed
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3515911885677830996, guid: 41c74af2ae10a47d7b377fdb1c6c2d8d, type: 3}
-      propertyPath: m_Color.r
-      value: 0.8
-      objectReference: {fileID: 0}
+    - target: {fileID: 3166331612250729627, guid: 41c74af2ae10a47d7b377fdb1c6c2d8d, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7759564528025836682, guid: ecc5491e69014433597457f75dffe50b, type: 3}
+    - target: {fileID: 3166331612250729627, guid: 41c74af2ae10a47d7b377fdb1c6c2d8d, type: 3}
+      propertyPath: turretTransform
+      value: 
+      objectReference: {fileID: 1716203890}
     - target: {fileID: 6349591266308837398, guid: 41c74af2ae10a47d7b377fdb1c6c2d8d, type: 3}
       propertyPath: m_Name
       value: YellowBase
@@ -1209,9 +1240,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5263273694468398354, guid: 48443cace34c147838ea0617bf653377, type: 3}
-      propertyPath: spawnRate
-      value: 10
+      propertyPath: fireRate
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5263273694468398354, guid: 48443cace34c147838ea0617bf653377, type: 3}
+      propertyPath: bulletSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263273694468398354, guid: 48443cace34c147838ea0617bf653377, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7759564528025836682, guid: ecc5491e69014433597457f75dffe50b, type: 3}
+    - target: {fileID: 5263273694468398354, guid: 48443cace34c147838ea0617bf653377, type: 3}
+      propertyPath: turretTransform
+      value: 
+      objectReference: {fileID: 286475615}
     - target: {fileID: 8770928521331244305, guid: 48443cace34c147838ea0617bf653377, type: 3}
       propertyPath: m_Name
       value: OrangeBase
@@ -1270,9 +1313,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5899484699919385090, guid: ed00dc321638b472abf9eb67aa545fef, type: 3}
-      propertyPath: spawnRate
-      value: 10
+      propertyPath: fireRate
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5899484699919385090, guid: ed00dc321638b472abf9eb67aa545fef, type: 3}
+      propertyPath: bulletSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899484699919385090, guid: ed00dc321638b472abf9eb67aa545fef, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7759564528025836682, guid: ecc5491e69014433597457f75dffe50b, type: 3}
+    - target: {fileID: 5899484699919385090, guid: ed00dc321638b472abf9eb67aa545fef, type: 3}
+      propertyPath: turretTransform
+      value: 
+      objectReference: {fileID: 8490734564913070604}
     - target: {fileID: 8954960845098964411, guid: ed00dc321638b472abf9eb67aa545fef, type: 3}
       propertyPath: m_Name
       value: GreenBase
@@ -1282,6 +1337,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed00dc321638b472abf9eb67aa545fef, type: 3}
+--- !u!4 &8490734564913070604 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 470562945386563157, guid: ed00dc321638b472abf9eb67aa545fef, type: 3}
+  m_PrefabInstance: {fileID: 8490734564913070601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
