@@ -42,23 +42,35 @@ public class Base : MonoBehaviour
         timeUntilSpawn -= Time.deltaTime;
 
 
-        RotateBarrel();
         Fire();
 
         
     }
 
-    void RotateBarrel()
-    {
-        turretRb.rotation -= rotationSpeed;
-    }
 
     public void Fire()
     {
-        if(GameObject.FindGameObjectWithTag("yellowBillion") != null)
+        if(GameObject.FindGameObjectWithTag("target") != null)
         {
-            GameObject targetBillion = GameObject.FindGameObjectWithTag("yellowBillion");
-            Vector3 direction = targetBillion.transform.position - firePoint.position;
+            GameObject targetBillion = GameObject.FindGameObjectWithTag("target");
+            Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
+
+            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, directionToBillion);
+            turretTransform.rotation = Quaternion.Slerp(turretTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+
+            // Vector3 currentDirection = transform.forward;
+            // Vector3 crossProduct = Vector3.Cross(currentDirection, directionToBillion);
+            // float dotProduct = Vector3.Dot(crossProduct, Vector3.up);
+
+            // if (dotProduct > 0)
+            // {
+            //     turretRb.rotation -= rotationSpeed;
+            // }
+            // else if (dotProduct < 0)
+            // {
+            //     turretRb.rotation += rotationSpeed;
+            // }
 
             if (timeTillFire <= 0)
             {

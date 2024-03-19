@@ -18,6 +18,7 @@ TagManager:
   - blueBullet
   - yellowBullet
   - orangeBullet
+  - target
   layers:
   - Default
   - TransparentFX
