@@ -19,6 +19,10 @@ TagManager:
   - yellowBullet
   - orangeBullet
   - target
+  - greenBase
+  - yellowBase
+  - blueBase
+  - orangeBase
   layers:
   - Default
   - TransparentFX

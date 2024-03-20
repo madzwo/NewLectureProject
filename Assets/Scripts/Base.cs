@@ -50,27 +50,15 @@ public class Base : MonoBehaviour
 
     public void Fire()
     {
-        if(GameObject.FindGameObjectWithTag("target") != null)
+        List<GameObject> enemyBillions = FindEnemyBillions();
+        GameObject targetBillion = FindClosestBillion(enemyBillions);
+        // GameObject targetBillion = GameObject.FindGameObjectWithTag("target");
+        if(targetBillion != null)
         {
-            GameObject targetBillion = GameObject.FindGameObjectWithTag("target");
             Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
 
             Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, directionToBillion);
             turretTransform.rotation = Quaternion.Slerp(turretTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-
-            // Vector3 currentDirection = transform.forward;
-            // Vector3 crossProduct = Vector3.Cross(currentDirection, directionToBillion);
-            // float dotProduct = Vector3.Dot(crossProduct, Vector3.up);
-
-            // if (dotProduct > 0)
-            // {
-            //     turretRb.rotation -= rotationSpeed;
-            // }
-            // else if (dotProduct < 0)
-            // {
-            //     turretRb.rotation += rotationSpeed;
-            // }
 
             if (timeTillFire <= 0)
             {
@@ -81,18 +69,58 @@ public class Base : MonoBehaviour
             else
             {
                 timeTillFire -= Time.deltaTime;
-            }
-        }        
+            }      
+        }
         
         
     }
 
+    public List<GameObject> FindEnemyBillions()
+    {
+        List<GameObject> enemyBillions = new List<GameObject>();
 
-    // public void SpawnFlag() 
-    // {
-    //     if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.K))
-    //     {
-    //         Instantiate(flag, spawnPoint.gameObject.transform.position, Quaternion.identity);
-    //     }
-    // }
+        if (gameObject.tag != "greenBase")
+        {
+            GameObject[] greenBillions = GameObject.FindGameObjectsWithTag("greenBillion");
+            enemyBillions.AddRange(greenBillions);
+        }
+        if (gameObject.tag != "yellowBase")
+        {
+            GameObject[] yellowBillions = GameObject.FindGameObjectsWithTag("yellowBillion");
+            enemyBillions.AddRange(yellowBillions);
+        }
+        if (gameObject.tag != "blueBase")
+        {
+            GameObject[] blueBillions = GameObject.FindGameObjectsWithTag("blueBillion");
+            enemyBillions.AddRange(blueBillions);
+        }
+        if (gameObject.tag != "orangeBase")
+        {
+            GameObject[] orangeBillions = GameObject.FindGameObjectsWithTag("orangeBillion");
+            enemyBillions.AddRange(orangeBillions);
+        }
+
+        return enemyBillions;
+    }
+
+    public GameObject FindClosestBillion(List<GameObject> billions)
+    {
+        if(billions.Count == 0)
+        {
+            return null;
+        }
+
+
+        GameObject target = billions[0];
+        for (int i = 0; i < billions.Count - 1; i++)
+        {
+            if (Vector2.Distance(turretTransform.position, billions[i+1].transform.position) < Vector2.Distance(turretTransform.position, target.transform.position))
+            {
+                target = billions[i+1];
+            }
+        }
+        return target;
+    }
+
+
 }
