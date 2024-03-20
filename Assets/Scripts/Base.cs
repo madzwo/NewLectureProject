@@ -20,6 +20,7 @@ public class Base : MonoBehaviour
     public float bulletSpeed;
     public float fireRate;
     private float timeTillFire;
+    public float shootingDistance;
 
 
 
@@ -27,6 +28,7 @@ public class Base : MonoBehaviour
     {
         timeUntilSpawn = 0;
         timeTillFire = fireRate;
+        shootingDistance = 3f;
 
     }
 
@@ -60,7 +62,7 @@ public class Base : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, directionToBillion);
             turretTransform.rotation = Quaternion.Slerp(turretTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            if (timeTillFire <= 0)
+            if (timeTillFire <= 0 && Vector2.Distance(transform.position, targetBillion.transform.position) < shootingDistance)
             {
                 GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.rotation);
                 bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * bulletSpeed, ForceMode2D.Impulse);

@@ -80,7 +80,7 @@ public class YellowBillion : MonoBehaviour
         
         if(Input.GetMouseButtonDown(0) && Vector2.Distance(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < .1)
         {
-            TakeDamage();
+            TakeDamage(1);
         }
     }
 
@@ -194,9 +194,9 @@ public class YellowBillion : MonoBehaviour
         } 
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int dmg)
     {
-        health -= 1;
+        health -= dmg;
 
         if (health == 5)
         {
@@ -240,8 +240,12 @@ public class YellowBillion : MonoBehaviour
     {
         if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "blueBullet")
         {
-            TakeDamage();
-        }        
+            TakeDamage(1);
+        }   
+        if (collision.gameObject.tag == "greenBaseBullet" || collision.gameObject.tag == "orangeBaseBullet" || collision.gameObject.tag == "blueBaseBullet")
+        {
+            TakeDamage(2);
+        }     
     }
     
 }
