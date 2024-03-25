@@ -22,6 +22,9 @@ public class Base : MonoBehaviour
     private float timeTillFire;
     public float shootingDistance;
 
+    public float health;
+    public float xp;
+
 
 
     void Awake()
@@ -111,7 +114,6 @@ public class Base : MonoBehaviour
         {
             return null;
         }
-
 
         GameObject target = billions[0];
         for (int i = 0; i < billions.Count - 1; i++)

@@ -86,112 +86,86 @@ public class YellowBillion : MonoBehaviour
 
     public void AimTurret()
     {
-        if (turretTransform != null)
+        List<GameObject> enemyBillions = FindEnemyBillions();
+        GameObject targetBillion = FindClosestBillion(enemyBillions);
+
+        if (targetBillion != null)
         {
-            targetBillion = null;
+            // Calculate the direction to the billion
+            Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
 
-            blueBillion = GameObject.FindGameObjectWithTag("blueBillion");
-            orangeBillion = GameObject.FindGameObjectWithTag("orangeBillion");
-            greenBillion = GameObject.FindGameObjectWithTag("greenBillion");
+            // Calculate the angle in degrees
+            float angle = Mathf.Atan2(directionToBillion.y, directionToBillion.x) * Mathf.Rad2Deg;
 
-                    // figure out target billion
-                    
-            //if all are null, wait for them to spawn     
-            if (!(orangeBillion == null && greenBillion == null && blueBillion == null))
+            // Set the rotation directly around Z-axis
+            turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+            if (timeUntilFire <= 0)
             {
-                // if two are null
-                if (greenBillion == null && orangeBillion == null && blueBillion != null)
-                {
-                    targetBillion = blueBillion;
-                }
-                else if (greenBillion == null && orangeBillion != null && blueBillion == null)
-                {
-                    targetBillion = orangeBillion;
-                }
-                else if (greenBillion != null && orangeBillion == null && blueBillion == null)
-                {
-                    targetBillion = greenBillion;
-                }
-
-                // if one is null
-                else if (greenBillion == null && orangeBillion != null && blueBillion != null)
-                {
-                    if(Vector2.Distance(this.transform.position, orangeBillion.transform.position) < Vector2.Distance(this.transform.position, blueBillion.transform.position))
-                    {
-                        targetBillion = orangeBillion;
-                    } 
-                    else
-                    {
-                        targetBillion = blueBillion;
-                    } 
-                }
-                else if (greenBillion != null && orangeBillion != null && blueBillion == null)
-                {
-                    if(Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, orangeBillion.transform.position))
-                    {
-                        targetBillion = greenBillion;
-                    }
-                    else
-                    {
-                        targetBillion = orangeBillion;
-                    }
-                }
-                else if (greenBillion != null && orangeBillion == null && blueBillion != null)
-                {
-                    if(Vector2.Distance(this.transform.position, greenBillion.transform.position) < Vector2.Distance(this.transform.position, blueBillion.transform.position))
-                    {
-                        targetBillion = greenBillion;
-                    }
-                    else
-                    {
-                        targetBillion = blueBillion;
-                    }
-                }
-
-                // if none are null       
-                else if (Vector2.Distance(this.transform.position, blueBillion.transform.position) < Vector2.Distance(this.transform.position, orangeBillion.transform.position))
-                {
-                    if(Vector2.Distance(this.transform.position, blueBillion.transform.position) < Vector2.Distance(this.transform.position, greenBillion.transform.position))
-                    {
-                        targetBillion = blueBillion;
-                    }
-                    else
-                    {
-                        targetBillion = greenBillion;
-                    }
-                }
-                else if(Vector2.Distance(this.transform.position, orangeBillion.transform.position) < Vector2.Distance(this.transform.position, greenBillion.transform.position))
-                {
-                    targetBillion = orangeBillion;
-                }
-                else
-                {
-                    targetBillion = greenBillion;
-                }
-                
-                if (targetBillion != null)
-                {
-                    // Calculate the direction to the billion
-                    Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;
-
-                    // Calculate the angle in degrees
-                    float angle = Mathf.Atan2(directionToBillion.y, directionToBillion.x) * Mathf.Rad2Deg;
-
-                    // Set the rotation directly around Z-axis
-                    turretTransform.rotation = Quaternion.Euler(0f, 0f, angle);
-
-                    if (timeUntilFire <= 0)
-                    {
-                        Fire(targetBillion, directionToBillion);
-                        timeUntilFire = fireRate;
-                    }
-                    else 
-                    {
-                        timeUntilFire -= Time.deltaTime;
-                    }
-                }
+                Fire(targetBillion, directionToBillion);
+                timeUntilFire = fireRate;
             }
-        } 
+            else 
+            {
+                timeUntilFire -= Time.deltaTime;
+            }
+        }
+    }
+
+    public void Fire(GameObject target, Vector3 direction)
+    {
+        if (Vector2.Distance(this.transform.position, target.transform.position) < shootingDistance)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, turretTransform.rotation);
+            bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
+
+        }
+    }
+
+    public List<GameObject> FindEnemyBillions()
+    {
+        List<GameObject> enemyBillions = new List<GameObject>();
+
+        if (gameObject.tag != "greenBillion")
+        {
+            GameObject[] greenBillions = GameObject.FindGameObjectsWithTag("greenBillion");
+            enemyBillions.AddRange(greenBillions);
+        }
+        if (gameObject.tag != "yellowBillion")
+        {
+            GameObject[] yellowBillions = GameObject.FindGameObjectsWithTag("yellowBillion");
+            enemyBillions.AddRange(yellowBillions);
+        }
+        if (gameObject.tag != "blueBillion")
+        {
+            GameObject[] blueBillions = GameObject.FindGameObjectsWithTag("blueBillion");
+            enemyBillions.AddRange(blueBillions);
+        }
+        if (gameObject.tag != "orangeBillion")
+        {
+            GameObject[] orangeBillions = GameObject.FindGameObjectsWithTag("orangeBillion");
+            enemyBillions.AddRange(orangeBillions);
+        }
+
+        return enemyBillions;
+    }
+
+    public GameObject FindClosestBillion(List<GameObject> billions)
+    {
+        if(billions.Count == 0)
+        {
+            return null;
+        }
+
+        GameObject target = billions[0];
+        for (int i = 0; i < billions.Count - 1; i++)
+        {
+            if (Vector2.Distance(turretTransform.position, billions[i+1].transform.position) < Vector2.Distance(turretTransform.position, target.transform.position))
+            {
+                target = billions[i+1];
+            }
+        }
+        return target;
     }
 
     public void TakeDamage(int dmg)
@@ -224,16 +198,6 @@ public class YellowBillion : MonoBehaviour
             health = 0;
             Destroy(gameObject);
         }    
-    }
-
-    public void Fire(GameObject target, Vector3 direction)
-    {
-        if (Vector2.Distance(this.transform.position, target.transform.position) < shootingDistance)
-        {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, turretTransform.rotation);
-            bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
-
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
