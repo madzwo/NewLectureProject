@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 3276690684281492893}
   - component: {fileID: 1879949786684711830}
   - component: {fileID: -8912885352121459807}
-  - component: {fileID: 13957080629117768}
+  - component: {fileID: 1483029605167468420}
   m_Layer: 0
   m_Name: OrangeBillion
   m_TagString: orangeBillion
@@ -352,7 +352,7 @@ CircleCollider2D:
   m_Offset: {x: -0.000916481, y: 0.0037389398}
   serializedVersion: 2
   m_Radius: 0.5050993
---- !u!114 &13957080629117768
+--- !u!114 &1483029605167468420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6144175037319675246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e66cbfb0ef94fdd93bd88f1395f7ca, type: 3}
+  m_Script: {fileID: 11500000, guid: ac81470a56d584adbba2332dc61bcbad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   billionSpeed: 0
@@ -369,13 +369,13 @@ MonoBehaviour:
   billionMaxSpeed: 1.7
   health: 0
   maxHealth: 5
-  orangeFlags: []
+  flags: []
   targetFlag: {fileID: 0}
   innerCircle: {fileID: 3647878858391044141}
   turretTransform: {fileID: 1328960964714511259}
-  blueBillion: {fileID: 0}
-  greenBillion: {fileID: 0}
   yellowBillion: {fileID: 0}
+  orangeBillion: {fileID: 0}
+  blueBillion: {fileID: 0}
   targetBillion: {fileID: 0}
   shootingDistance: 3.5
   fireRate: 1.5

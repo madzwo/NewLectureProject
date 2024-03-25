@@ -10,7 +10,7 @@ public class GreenBillion : MonoBehaviour
     public float health;
     public float maxHealth;
 
-    public GameObject[] greenFlags;
+    public GameObject[] flags;
     public GameObject targetFlag;
     public GameObject innerCircle;
 
@@ -36,26 +36,42 @@ public class GreenBillion : MonoBehaviour
     void Update()
     {
         AimTurret();
-        greenFlags = GameObject.FindGameObjectsWithTag("greenFlag");
+
+        if(gameObject.tag == "greenBillion")
+        {
+            flags = GameObject.FindGameObjectsWithTag("greenFlag");
+        }
+        else if(gameObject.tag == "yellowBillion")
+        {
+            flags = GameObject.FindGameObjectsWithTag("yellowFlag");
+        }
+        else if(gameObject.tag == "orangeBillion")
+        {
+            flags = GameObject.FindGameObjectsWithTag("orangeFlag");
+        }
+        else if(gameObject.tag == "blueBillion")
+        {
+            flags = GameObject.FindGameObjectsWithTag("blueFlag");
+        }
 
         //determine where billion moves
-        if (greenFlags.Length != 0)
+        if (flags.Length != 0)
         {
             //if there is one flag, it is the target flag
-            if (greenFlags.Length == 1)
+            if (flags.Length == 1)
             {
-                targetFlag = greenFlags[0];
+                targetFlag = flags[0];
             } 
             //if there are two flags determine which is closer
             else 
             {
-                if ((Vector2.Distance(this.transform.position, greenFlags[0].transform.position)) < (Vector2.Distance(this.transform.position, greenFlags[1].transform.position)))
+                if ((Vector2.Distance(this.transform.position, flags[0].transform.position)) < (Vector2.Distance(this.transform.position, flags[1].transform.position)))
                 {
-                    targetFlag = greenFlags[0];
+                    targetFlag = flags[0];
                 }
                 else
                 {
-                    targetFlag = greenFlags[1];
+                    targetFlag = flags[1];
                 }
             } 
         
@@ -175,7 +191,7 @@ public class GreenBillion : MonoBehaviour
             GameObject orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
             enemies.Add(orangeBase);
         }
-        
+
         return enemies;
     }
 
@@ -231,14 +247,53 @@ public class GreenBillion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "blueBullet")
+        if(gameObject.tag == "greenBillion")
         {
-            TakeDamage(1);
-        }  
-        if (collision.gameObject.tag == "yellowBaseBullet" || collision.gameObject.tag == "orangeBaseBullet" || collision.gameObject.tag == "blueBaseBullet")
+            if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "blueBullet")
+            {
+                TakeDamage(1);
+            }  
+            if (collision.gameObject.tag == "yellowBaseBullet" || collision.gameObject.tag == "orangeBaseBullet" || collision.gameObject.tag == "blueBaseBullet")
+            {
+                TakeDamage(2);
+            } 
+        }
+
+        if (gameObject.tag == "yellowBillion")
         {
-            TakeDamage(2);
-        }       
+            if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "blueBullet")
+            {
+                TakeDamage(1);
+            }   
+            if (collision.gameObject.tag == "greenBaseBullet" || collision.gameObject.tag == "orangeBaseBullet" || collision.gameObject.tag == "blueBaseBullet")
+            {
+                TakeDamage(2);
+            } 
+        }
+
+        if(gameObject.tag == "orangeBillion")
+        {
+            if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "blueBullet")
+            {
+                TakeDamage(1);
+            }   
+            if (collision.gameObject.tag == "greenBaseBullet" || collision.gameObject.tag == "yellowBaseBullet" || collision.gameObject.tag == "blueBaseBullet")
+            {
+                TakeDamage(2);
+            }
+        }
+
+        if (gameObject.tag == "blueBillion")
+        {
+            if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "yellowBullet")
+            {
+                TakeDamage(1);
+            }  
+            if (collision.gameObject.tag == "greenBaseBullet" || collision.gameObject.tag == "orangeBaseBullet" || collision.gameObject.tag == "yellowBaseBullet")
+            {
+                TakeDamage(2);
+            } 
+        }    
     }
 }
 
