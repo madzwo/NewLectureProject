@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenBillion : MonoBehaviour
+public class Billion : MonoBehaviour
 {
     public float billionSpeed;
     public float billionAcc;

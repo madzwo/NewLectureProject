@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2525097509227275163}
   - component: {fileID: 3959633529549935349}
   - component: {fileID: 6181901614800030010}
-  - component: {fileID: -3437508752288048299}
+  - component: {fileID: -7437806443047870090}
   m_Layer: 0
   m_Name: YellowBullet
   m_TagString: yellowBullet
@@ -159,7 +159,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-3437508752288048299
+--- !u!114 &-7437806443047870090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7109592236991123235}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92288ad248f194bffaa5a52e9c7dfb5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e23f43a972494e049dea160461d5ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletLife: 1.5
