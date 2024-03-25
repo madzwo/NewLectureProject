@@ -125,32 +125,56 @@ public class OrangeBillion : MonoBehaviour
         }
     }
 
-    public List<GameObject> FindEnemyBillions()
+public List<GameObject> FindEnemyBillions()
     {
-        List<GameObject> enemyBillions = new List<GameObject>();
+        List<GameObject> enemies = new List<GameObject>();
 
+        // add all enemy billions to list of enemies
         if (gameObject.tag != "greenBillion")
         {
             GameObject[] greenBillions = GameObject.FindGameObjectsWithTag("greenBillion");
-            enemyBillions.AddRange(greenBillions);
+            enemies.AddRange(greenBillions);
         }
         if (gameObject.tag != "yellowBillion")
         {
             GameObject[] yellowBillions = GameObject.FindGameObjectsWithTag("yellowBillion");
-            enemyBillions.AddRange(yellowBillions);
+            enemies.AddRange(yellowBillions);
         }
         if (gameObject.tag != "blueBillion")
         {
             GameObject[] blueBillions = GameObject.FindGameObjectsWithTag("blueBillion");
-            enemyBillions.AddRange(blueBillions);
+            enemies.AddRange(blueBillions);
         }
         if (gameObject.tag != "orangeBillion")
         {
             GameObject[] orangeBillions = GameObject.FindGameObjectsWithTag("orangeBillion");
-            enemyBillions.AddRange(orangeBillions);
+            enemies.AddRange(orangeBillions);
         }
 
-        return enemyBillions;
+        // add all enemy bases to list of enemys
+
+        if (gameObject.tag != "greenBillion")
+        {
+            GameObject greenBase = GameObject.FindGameObjectWithTag("greenBase");
+            enemies.Add(greenBase);
+        }
+        if (gameObject.tag != "yellowBillion")
+        {
+            GameObject yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
+            enemies.Add(yellowBase);
+        }
+        if (gameObject.tag != "blueBillion")
+        {
+            GameObject blueBase = GameObject.FindGameObjectWithTag("blueBase");
+            enemies.Add(blueBase);
+        }
+        if (gameObject.tag != "orangeBillion")
+        {
+            GameObject orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
+            enemies.Add(orangeBase);
+        }
+        
+        return enemies;
     }
 
     public GameObject FindClosestBillion(List<GameObject> billions)
