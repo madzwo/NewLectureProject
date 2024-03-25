@@ -23,6 +23,7 @@ public class Base : MonoBehaviour
     public float shootingDistance;
 
     public float health;
+    public float maxHealth;
     public float xp;
 
 
@@ -32,6 +33,8 @@ public class Base : MonoBehaviour
         timeUntilSpawn = 0;
         timeTillFire = fireRate;
         shootingDistance = 3f;
+
+        health = maxHealth;
 
     }
 
@@ -126,5 +129,40 @@ public class Base : MonoBehaviour
         return target;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (gameObject.tag == "greenBase")
+        {
+            if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "blueBullet")
+            {
+                health -= 1;
+            }
+        }
+        if (gameObject.tag == "yellowBase")
+        {
+            if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "blueBullet")
+            {
+                health -= 1;
+            }
+        }
+        if (gameObject.tag == "orangeBase")
+        {
+            if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "blueBullet")
+            {
+                health -= 1;
+            }
+        }
+        if (gameObject.tag == "blueBase")
+        {
+            if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "greenBullet")
+            {
+                health -= 1;
+            }
+        }
 
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

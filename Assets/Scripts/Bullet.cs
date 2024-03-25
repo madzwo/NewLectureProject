@@ -32,10 +32,18 @@ public class Bullet : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            if (collision.gameObject.tag == "yellowBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "blueBase")
+            {
+                Destroy(gameObject);
+            }
         }  
         if(gameObject.tag == "yellowBullet")
         {
             if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border")
+            {
+                Destroy(gameObject);
+            }
+            if (collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "blueBase")
             {
                 Destroy(gameObject);
             }
@@ -46,10 +54,18 @@ public class Bullet : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            if (collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "yellowBase" || collision.gameObject.tag == "blueBase")
+            {
+                Destroy(gameObject);
+            }
         }   
         if(gameObject.tag == "blueBullet")
         {
             if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "border")
+            {
+                Destroy(gameObject);
+            }
+            if (collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "yellowBase")
             {
                 Destroy(gameObject);
             }
