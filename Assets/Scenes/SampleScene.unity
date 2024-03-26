@@ -1174,6 +1174,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4482534022557878100, guid: 48443cace34c147838ea0617bf653377, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4482534022557878100, guid: 48443cace34c147838ea0617bf653377, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 8770928521331244305, guid: 48443cace34c147838ea0617bf653377, type: 3}
       propertyPath: m_Name
       value: OrangeBase

@@ -31,7 +31,7 @@ public class Base : MonoBehaviour
     [SerializeField] Image healthBar;
     [SerializeField] Image xpBar;
 
-
+    public int rank;
 
 
     void Awake()
@@ -59,6 +59,12 @@ public class Base : MonoBehaviour
 
         healthBar.fillAmount = health / maxHealth;
         xpBar.fillAmount = xp / maxXp;
+
+        if(xp >= maxXp)
+        {
+            rank++;
+            xp = 0;
+        }
                 
     }
 
