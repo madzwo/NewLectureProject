@@ -27,9 +27,21 @@ public class Billion : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed;
 
+    public GameObject greenBase;
+    public GameObject yellowBase;
+    public GameObject orangeBase;
+    public GameObject blueBase;
+
+
+
     void Start()
     {
         health = maxHealth;
+        
+        greenBase = GameObject.FindGameObjectWithTag("greenBase");
+        yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
+        orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
+        blueBase = GameObject.FindGameObjectWithTag("blueBase");
 
     }
 
@@ -236,12 +248,6 @@ public class Billion : MonoBehaviour
         if (health == 1)
         {
             innerCircle.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.0f);
-        }
-
-        if(health <= 0) 
-        {
-            health = 0;
-            Destroy(gameObject);
         }    
     }
 
@@ -293,6 +299,32 @@ public class Billion : MonoBehaviour
             {
                 TakeDamage(2);
             } 
+        }
+
+        if(health <= 0) 
+        {
+            if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "greenBaseBullet")
+            {
+                Base greenBaseScript = greenBase.gameObject.GetComponent<Base>();
+                greenBaseScript.xp += 1;
+            }
+            if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "yellowBaseBullet")
+            {
+                Base yellowBaseScript = yellowBase.gameObject.GetComponent<Base>();
+                yellowBaseScript.xp += 1;
+            }
+            if (collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "orangeBaseBullet")
+            {
+                Base orangeBaseScript = orangeBase.gameObject.GetComponent<Base>();
+                orangeBaseScript.xp += 1;
+            }
+            if (collision.gameObject.tag == "blueBullet" || collision.gameObject.tag == "blueBaseBullet")
+            {
+                Base blueBaseScript = blueBase.gameObject.GetComponent<Base>();
+                blueBaseScript.xp += 1;
+            }
+            health = 0;
+            Destroy(gameObject);
         }    
     }
 }

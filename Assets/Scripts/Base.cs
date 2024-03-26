@@ -63,7 +63,6 @@ public class Base : MonoBehaviour
     {
         List<GameObject> enemyBillions = FindEnemyBillions();
         GameObject targetBillion = FindClosestBillion(enemyBillions);
-        // GameObject targetBillion = GameObject.FindGameObjectWithTag("target");
         if(targetBillion != null)
         {
             Vector3 directionToBillion = targetBillion.transform.position - turretTransform.position;

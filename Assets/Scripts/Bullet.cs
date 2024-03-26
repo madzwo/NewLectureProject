@@ -26,46 +26,34 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(gameObject.tag == "greenBullet")
+        if(gameObject.tag == "greenBullet" || gameObject.tag == "greenBaseBullet")
         {
-            if (collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border")
-            {
-                Destroy(gameObject);
-            }
-            if (collision.gameObject.tag == "yellowBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "blueBase")
+            if (collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border" 
+                || collision.gameObject.tag == "yellowBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "blueBase")
             {
                 Destroy(gameObject);
             }
         }  
         if(gameObject.tag == "yellowBullet")
         {
-            if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border")
-            {
-                Destroy(gameObject);
-            }
-            if (collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "blueBase")
+            if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border" 
+                || collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "blueBase")
             {
                 Destroy(gameObject);
             }
         } 
         if(gameObject.tag == "orangeBullet")
         {
-            if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border")
-            {
-                Destroy(gameObject);
-            }
-            if (collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "yellowBase" || collision.gameObject.tag == "blueBase")
+            if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border" 
+                || collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "yellowBase" || collision.gameObject.tag == "blueBase")
             {
                 Destroy(gameObject);
             }
         }   
         if(gameObject.tag == "blueBullet")
         {
-            if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "border")
-            {
-                Destroy(gameObject);
-            }
-            if (collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "yellowBase")
+            if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "border"
+                || collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "yellowBase")
             {
                 Destroy(gameObject);
             }
