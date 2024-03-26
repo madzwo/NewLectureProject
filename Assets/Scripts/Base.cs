@@ -26,8 +26,11 @@ public class Base : MonoBehaviour
     public float health;
     public float maxHealth;
     public float xp;
+    public float maxXp;
 
     [SerializeField] Image healthBar;
+    [SerializeField] Image xpBar;
+
 
 
 
@@ -55,7 +58,8 @@ public class Base : MonoBehaviour
         Fire();
 
         healthBar.fillAmount = health / maxHealth;
-        
+        xpBar.fillAmount = xp / maxXp;
+                
     }
 
 

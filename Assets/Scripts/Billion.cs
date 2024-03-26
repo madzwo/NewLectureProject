@@ -185,23 +185,35 @@ public class Billion : MonoBehaviour
 
         if (gameObject.tag != "greenBillion")
         {
-            GameObject greenBase = GameObject.FindGameObjectWithTag("greenBase");
-            enemies.Add(greenBase);
+            if (GameObject.FindGameObjectWithTag("greenBase") != null)
+            {
+                GameObject greenBase = GameObject.FindGameObjectWithTag("greenBase");
+                enemies.Add(greenBase);
+            }
         }
         if (gameObject.tag != "yellowBillion")
         {
-            GameObject yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
-            enemies.Add(yellowBase);
+            if (GameObject.FindGameObjectWithTag("yellowBase") != null)
+            {
+                GameObject yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
+                enemies.Add(yellowBase);
+            }
         }
         if (gameObject.tag != "blueBillion")
         {
-            GameObject blueBase = GameObject.FindGameObjectWithTag("blueBase");
-            enemies.Add(blueBase);
+            if (GameObject.FindGameObjectWithTag("blueBase") != null)
+            {
+                GameObject blueBase = GameObject.FindGameObjectWithTag("blueBase");
+                enemies.Add(blueBase);
+            }
         }
         if (gameObject.tag != "orangeBillion")
         {
-            GameObject orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
-            enemies.Add(orangeBase);
+            if (GameObject.FindGameObjectWithTag("orangeBase") != null)
+            {
+                GameObject orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
+                enemies.Add(orangeBase);
+            }
         }
 
         return enemies;
@@ -214,12 +226,20 @@ public class Billion : MonoBehaviour
             return null;
         }
 
+        
         GameObject target = billions[0];
         for (int i = 0; i < billions.Count - 1; i++)
         {
-            if (Vector2.Distance(turretTransform.position, billions[i+1].transform.position) < Vector2.Distance(turretTransform.position, target.transform.position))
+            if(billions[i+1] != null)
             {
-                target = billions[i+1];
+                if (Vector2.Distance(turretTransform.position, billions[i+1].transform.position) < Vector2.Distance(turretTransform.position, target.transform.position))
+                {
+                    target = billions[i+1];
+                }
+            }
+            else 
+            {
+                Debug.Log("hmmm");
             }
         }
         return target;
@@ -305,23 +325,35 @@ public class Billion : MonoBehaviour
         {
             if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "greenBaseBullet")
             {
-                Base greenBaseScript = greenBase.gameObject.GetComponent<Base>();
-                greenBaseScript.xp += 1;
+                if (greenBase != null)
+                {
+                    Base greenBaseScript = greenBase.gameObject.GetComponent<Base>();
+                    greenBaseScript.xp += 1;
+                }
             }
             if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "yellowBaseBullet")
             {
-                Base yellowBaseScript = yellowBase.gameObject.GetComponent<Base>();
-                yellowBaseScript.xp += 1;
+                if (yellowBase != null)
+                {
+                    Base yellowBaseScript = yellowBase.gameObject.GetComponent<Base>();
+                    yellowBaseScript.xp += 1;
+                }
             }
             if (collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "orangeBaseBullet")
             {
-                Base orangeBaseScript = orangeBase.gameObject.GetComponent<Base>();
-                orangeBaseScript.xp += 1;
+                if (orangeBase != null)
+                {
+                    Base orangeBaseScript = orangeBase.gameObject.GetComponent<Base>();
+                    orangeBaseScript.xp += 1;
+                }
             }
             if (collision.gameObject.tag == "blueBullet" || collision.gameObject.tag == "blueBaseBullet")
             {
-                Base blueBaseScript = blueBase.gameObject.GetComponent<Base>();
-                blueBaseScript.xp += 1;
+                if (blueBase != null)
+                {
+                    Base blueBaseScript = blueBase.gameObject.GetComponent<Base>();
+                    blueBaseScript.xp += 1;
+                }
             }
             health = 0;
             Destroy(gameObject);
