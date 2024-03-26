@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Base : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class Base : MonoBehaviour
     public float maxHealth;
     public float xp;
 
+    [SerializeField] Image healthBar;
+
 
 
     void Awake()
@@ -49,9 +52,9 @@ public class Base : MonoBehaviour
         }
         timeUntilSpawn -= Time.deltaTime;
 
-
         Fire();
 
+        healthBar.fillAmount = health / maxHealth;
         
     }
 
