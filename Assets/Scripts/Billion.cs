@@ -31,7 +31,8 @@ public class Billion : MonoBehaviour
     public GameObject yellowBase;
     public GameObject orangeBase;
     public GameObject blueBase;
-
+    
+    public int rank;
 
 
     void Start()
@@ -42,6 +43,23 @@ public class Billion : MonoBehaviour
         yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
         orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
         blueBase = GameObject.FindGameObjectWithTag("blueBase");
+
+        if(gameObject.tag == "greenBillion")
+        {
+            rank = greenBase.GetComponent<Base>().GetRank();
+        }
+        else if(gameObject.tag == "yellowBillion")
+        {
+            rank = yellowBase.GetComponent<Base>().GetRank();
+        }
+        else if(gameObject.tag == "orangeBillion")
+        {
+            rank = orangeBase.GetComponent<Base>().GetRank();
+        }
+        else if(gameObject.tag == "blueBillion")
+        {
+            rank = blueBase.GetComponent<Base>().GetRank();
+        }
 
     }
 

@@ -66,7 +66,8 @@ public class Base : MonoBehaviour
         if(xp >= maxXp)
         {
             rank++;
-            xp = 0;
+            xp = xp - maxXp; // extra xp carries over
+            maxXp += 5;
         }
 
         rankText.SetText("" + rank.ToString());
@@ -181,5 +182,10 @@ public class Base : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public int GetRank()
+    {
+        return rank;
     }
 }
