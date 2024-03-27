@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class Base : MonoBehaviour
 {
@@ -32,6 +34,7 @@ public class Base : MonoBehaviour
     [SerializeField] Image xpBar;
 
     public int rank;
+    public TMP_Text rankText;
 
 
     void Awake()
@@ -65,6 +68,8 @@ public class Base : MonoBehaviour
             rank++;
             xp = 0;
         }
+
+        rankText.SetText("" + rank.ToString());
                 
     }
 
