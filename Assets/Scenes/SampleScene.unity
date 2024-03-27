@@ -1347,6 +1347,10 @@ PrefabInstance:
       propertyPath: rankText
       value: 
       objectReference: {fileID: 1958759900}
+    - target: {fileID: 5899484699919385090, guid: ed00dc321638b472abf9eb67aa545fef, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6724648419480867140, guid: ed00dc321638b472abf9eb67aa545fef, type: 3}
       propertyPath: m_Name
       value: RankCanvas

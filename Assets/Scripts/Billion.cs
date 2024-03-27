@@ -7,8 +7,6 @@ public class Billion : MonoBehaviour
     public float billionSpeed;
     public float billionAcc;
     public float billionMaxSpeed;
-    public float health;
-    public float maxHealth;
 
     public GameObject[] flags;
     public GameObject targetFlag;
@@ -32,13 +30,13 @@ public class Billion : MonoBehaviour
     public GameObject orangeBase;
     public GameObject blueBase;
     
-    public int rank;
-
+    public float rank;
+    public float health;
+    public float maxHealth;
+    // public float damage;
 
     void Start()
-    {
-        health = maxHealth;
-        
+    {        
         greenBase = GameObject.FindGameObjectWithTag("greenBase");
         yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
         orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
@@ -60,6 +58,9 @@ public class Billion : MonoBehaviour
         {
             rank = blueBase.GetComponent<Base>().GetRank();
         }
+
+        maxHealth = rank * 2.5f;
+        health = maxHealth;
 
     }
 
@@ -255,88 +256,104 @@ public class Billion : MonoBehaviour
                     target = billions[i+1];
                 }
             }
-            else 
-            {
-                Debug.Log("hmmm");
-            }
         }
         return target;
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
         health -= dmg;
 
-        if (health == 5)
+        float circleFill = 0.0f;
+
+        float healthPercentage = health/maxHealth;
+
+        if (healthPercentage <= 1.0f && healthPercentage > 0.9f)
         {
-            innerCircle.gameObject.transform.localScale = new Vector3(0.9f, 0.9f, 0.0f);
+            circleFill = 0.95f;
         }
-        if (health == 4)
+        else if (healthPercentage <= 0.9f && healthPercentage > 0.8f)
         {
-            innerCircle.gameObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.0f);
+            circleFill = 0.9f;
         }
-        if (health == 3)
+        else if (healthPercentage <= 0.8f && healthPercentage > 0.7f)
         {
-            innerCircle.gameObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.0f);
+            circleFill = 0.85f;
         }
-        if (health == 2)
+        else if (healthPercentage <= 0.7f && healthPercentage > 0.6f)
         {
-            innerCircle.gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 0.0f);
+            circleFill = 0.8f;
         }
-        if (health == 1)
+        else if (healthPercentage <= 0.6f && healthPercentage > 0.5f)
         {
-            innerCircle.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.0f);
+            circleFill = 0.75f;
         }    
+        else if (healthPercentage <= 0.5f && healthPercentage > 0.4f)
+        {
+            circleFill = 0.7f;
+        } 
+        else if (healthPercentage <= 0.4f && healthPercentage > 0.3f)
+        {
+            circleFill = 0.65f;
+        } 
+        else if (healthPercentage <= 0.3f && healthPercentage > 0.2f)
+        {
+            circleFill = 0.6f;
+        }
+        else if (healthPercentage <= 0.2f && healthPercentage > 0.1f)
+        {
+            circleFill = 0.55f;
+        }
+        else if (healthPercentage <= 0.1f && healthPercentage > 0.0f)
+        {
+            circleFill = 0.5f;
+        }
+        innerCircle.gameObject.transform.localScale = new Vector3(circleFill, circleFill, 0.0f);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(gameObject.tag == "greenBillion")
+        if (collision.tag == "greenBullet" && gameObject.tag != "greenBillion")
         {
-            if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "blueBullet")
+            greenBase = GameObject.FindGameObjectWithTag("greenBase");
+            if (greenBase != null)
             {
-                TakeDamage(1);
-            }  
-            if (collision.gameObject.tag == "yellowBaseBullet" || collision.gameObject.tag == "orangeBaseBullet" || collision.gameObject.tag == "blueBaseBullet")
-            {
-                TakeDamage(2);
-            } 
-        }
-
-        if (gameObject.tag == "yellowBillion")
-        {
-            if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "blueBullet")
-            {
-                TakeDamage(1);
-            }   
-            if (collision.gameObject.tag == "greenBaseBullet" || collision.gameObject.tag == "orangeBaseBullet" || collision.gameObject.tag == "blueBaseBullet")
-            {
-                TakeDamage(2);
-            } 
-        }
-
-        if(gameObject.tag == "orangeBillion")
-        {
-            if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "blueBullet")
-            {
-                TakeDamage(1);
-            }   
-            if (collision.gameObject.tag == "greenBaseBullet" || collision.gameObject.tag == "yellowBaseBullet" || collision.gameObject.tag == "blueBaseBullet")
-            {
-                TakeDamage(2);
+                float greenRank = greenBase.GetComponent<Base>().GetRank();
+                float dmg = greenRank / 2.0f;
+                TakeDamage(dmg);
+                Debug.Log("green bullet did damage: " + dmg);
             }
         }
-
-        if (gameObject.tag == "blueBillion")
+        if (collision.tag == "yellowBullet" && gameObject.tag != "yellowBillion")
         {
-            if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "yellowBullet")
+            yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
+            if (yellowBase != null)
             {
-                TakeDamage(1);
-            }  
-            if (collision.gameObject.tag == "greenBaseBullet" || collision.gameObject.tag == "orangeBaseBullet" || collision.gameObject.tag == "yellowBaseBullet")
+                float yellowRank = yellowBase.GetComponent<Base>().GetRank();
+                float dmg = yellowRank / 2.0f;
+                TakeDamage(dmg);
+            }
+        }
+        if (collision.tag == "orangeBullet" && gameObject.tag != "orangeBillion")
+        {
+            orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
+            if (orangeBase != null)
             {
-                TakeDamage(2);
-            } 
+                float orangeRank = orangeBase.GetComponent<Base>().GetRank();
+                float dmg = orangeRank / 2.0f;
+                TakeDamage(dmg);
+            }
+        }
+        if (collision.tag == "blueBullet" && gameObject.tag != "blueBillion")
+        {
+            blueBase = GameObject.FindGameObjectWithTag("blueBase");
+            if (blueBase != null)
+            {
+                float blueRank = blueBase.GetComponent<Base>().GetRank();
+                float dmg = blueRank / 2.0f;
+                TakeDamage(dmg);
+            }
         }
 
         if(health <= 0) 
@@ -373,6 +390,7 @@ public class Billion : MonoBehaviour
                     blueBaseScript.xp += 1;
                 }
             }
+            Debug.Log("billion died");
             health = 0;
             Destroy(gameObject);
         }    

@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     public float bulletLife;
     private float timeTillDeath;
 
+    public float damage;
+
     void Start()
     {
         timeTillDeath = bulletLife;
