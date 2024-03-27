@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Billion : MonoBehaviour
 {
@@ -33,7 +34,9 @@ public class Billion : MonoBehaviour
     public float rank;
     public float health;
     public float maxHealth;
-    // public float damage;
+
+    public TMP_Text rankText;
+
 
     void Start()
     {        
@@ -58,6 +61,8 @@ public class Billion : MonoBehaviour
         {
             rank = blueBase.GetComponent<Base>().GetRank();
         }
+        
+        rankText.SetText("" + rank.ToString());
 
         maxHealth = rank * 2.5f;
         health = maxHealth;
