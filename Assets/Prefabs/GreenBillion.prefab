@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058619460570683193}
   - component: {fileID: 3387227114677660664}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1879949786684711830}
   - component: {fileID: -8912885352121459807}
   - component: {fileID: -7675047671825002018}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GreenBillion
   m_TagString: greenBillion
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ MonoBehaviour:
   billionMaxSpeed: 1.7
   health: 0
   maxHealth: 5
-  greenFlags: []
+  flags: []
   targetFlag: {fileID: 0}
   innerCircle: {fileID: 3647878858391044141}
   turretTransform: {fileID: 847580374060540534}
@@ -266,6 +266,10 @@ MonoBehaviour:
   firePoint: {fileID: 6317380482550500582}
   bulletPrefab: {fileID: 7109592236991123235, guid: 227b5371d2a4e4926a485bae9c7f6b52, type: 3}
   bulletSpeed: 0.8
+  greenBase: {fileID: 0}
+  yellowBase: {fileID: 0}
+  orangeBase: {fileID: 0}
+  blueBase: {fileID: 0}
 --- !u!1 &6632454851319110412
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 847580374060540534}
   - component: {fileID: 1099523598095894908}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6317380482550500582}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7674994464946674343}
   - component: {fileID: 5880537293525307890}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
