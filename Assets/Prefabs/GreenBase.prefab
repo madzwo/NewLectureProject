@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 7865918457396719624}
   - component: {fileID: 8670438068330608755}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: BarsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 1799642932354922959}
   - component: {fileID: 1804214173027087925}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: RankCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -812,9 +812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1
-
-'
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -847,7 +845,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1062,10 +1060,11 @@ MonoBehaviour:
   health: 0
   maxHealth: 10
   xp: 0
-  maxXp: 15
+  maxXp: 10
   healthBar: {fileID: 4377874958905544412}
   xpBar: {fileID: 8626139253315805237}
-  rank: 0
+  rank: 1
+  rankText: {fileID: 3565988887977977551}
 --- !u!50 &2183978886805787068
 Rigidbody2D:
   serializedVersion: 4

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -743,10 +743,11 @@ MonoBehaviour:
   health: 0
   maxHealth: 10
   xp: 0
-  maxXp: 15
+  maxXp: 10
   healthBar: {fileID: 6671169075677997766}
   xpBar: {fileID: 3851148131625806496}
-  rank: 0
+  rank: 1
+  rankText: {fileID: 5212252817881314989}
 --- !u!50 &5603027653123759988
 Rigidbody2D:
   serializedVersion: 4

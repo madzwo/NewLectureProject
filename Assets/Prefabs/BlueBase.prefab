@@ -926,10 +926,11 @@ MonoBehaviour:
   health: 0
   maxHealth: 10
   xp: 0
-  maxXp: 15
+  maxXp: 10
   healthBar: {fileID: 756053192175196490}
   xpBar: {fileID: 9027315623854627096}
-  rank: 0
+  rank: 1
+  rankText: {fileID: 2592535226737869509}
 --- !u!50 &1756302964552428657
 Rigidbody2D:
   serializedVersion: 4
@@ -1092,7 +1093,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
