@@ -7,8 +7,6 @@ public class Bullet : MonoBehaviour
     public float bulletLife;
     private float timeTillDeath;
 
-    public float damage;
-
     void Start()
     {
         timeTillDeath = bulletLife;
@@ -36,7 +34,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
         }  
-        if(gameObject.tag == "yellowBullet")
+        if(gameObject.tag == "yellowBullet" || gameObject.tag == "yellowBaseBullet")
         {
             if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border" 
                 || collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "blueBase")
@@ -44,7 +42,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
         } 
-        if(gameObject.tag == "orangeBullet")
+        if(gameObject.tag == "orangeBullet" || gameObject.tag == "orangeBaseBullet")
         {
             if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border" 
                 || collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "yellowBase" || collision.gameObject.tag == "blueBase")
@@ -52,7 +50,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
         }   
-        if(gameObject.tag == "blueBullet")
+        if(gameObject.tag == "blueBullet" || gameObject.tag == "blueBaseBullet")
         {
             if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "border"
                 || collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "yellowBase")

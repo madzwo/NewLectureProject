@@ -41,7 +41,7 @@ public class Billion : MonoBehaviour
     void Start()
     {        
         shootingDistance = 2f;
-        
+
         greenBase = GameObject.FindGameObjectWithTag("greenBase");
         yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
         orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
@@ -321,7 +321,7 @@ public class Billion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "greenBullet" && gameObject.tag != "greenBillion")
+        if ((collision.tag == "greenBullet" || collision.tag == "greenBaseBullet") && gameObject.tag != "greenBillion")
         {
             greenBase = GameObject.FindGameObjectWithTag("greenBase");
             if (greenBase != null)
@@ -332,7 +332,7 @@ public class Billion : MonoBehaviour
                 Debug.Log("green bullet did damage: " + dmg);
             }
         }
-        if (collision.tag == "yellowBullet" && gameObject.tag != "yellowBillion")
+        if ((collision.tag == "yellowBullet" || collision.tag == "yellowBaseBullet") && gameObject.tag != "yellowBillion")
         {
             yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
             if (yellowBase != null)
@@ -342,7 +342,7 @@ public class Billion : MonoBehaviour
                 TakeDamage(dmg);
             }
         }
-        if (collision.tag == "orangeBullet" && gameObject.tag != "orangeBillion")
+        if ((collision.tag == "orangeBullet" || collision.tag == "orangeBaseBullet") && gameObject.tag != "orangeBillion")
         {
             orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
             if (orangeBase != null)
@@ -352,7 +352,7 @@ public class Billion : MonoBehaviour
                 TakeDamage(dmg);
             }
         }
-        if (collision.tag == "blueBullet" && gameObject.tag != "blueBillion")
+        if ((collision.tag == "blueBullet" || collision.tag == "blueBaseBullet") && gameObject.tag != "blueBillion")
         {
             blueBase = GameObject.FindGameObjectWithTag("blueBase");
             if (blueBase != null)
