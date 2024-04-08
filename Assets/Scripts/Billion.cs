@@ -40,6 +40,8 @@ public class Billion : MonoBehaviour
 
     void Start()
     {        
+        shootingDistance = 2f;
+        
         greenBase = GameObject.FindGameObjectWithTag("greenBase");
         yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
         orangeBase = GameObject.FindGameObjectWithTag("orangeBase");

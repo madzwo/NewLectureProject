@@ -41,7 +41,7 @@ public class Base : MonoBehaviour
     {
         timeUntilSpawn = 0;
         timeTillFire = fireRate;
-        shootingDistance = 3f;
+        shootingDistance = 2f;
 
         health = maxHealth;
 

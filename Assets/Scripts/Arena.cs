@@ -190,11 +190,13 @@ public class Arena : MonoBehaviour
 
         for (int i = 0; i < centerTiles.Count; i++)
         {
+            float randTile = Random.Range(0f, (float) (centerTiles.Count-1));
+            int index = Mathf.RoundToInt(randTile);
+            GameObject tile = centerTiles[index];
+
             if(bases.Count > 0)
             {
-                float randTile = Random.Range(0f, (float) (centerTiles.Count-1));
-                int index = Mathf.RoundToInt(randTile);
-                GameObject tile = centerTiles[index];
+                
 
                 GameObject currentBase = null;
 
@@ -284,16 +286,16 @@ public class Arena : MonoBehaviour
                     Instantiate(currentBase, tile.transform.position, tile.transform.rotation);
                     tile.SetActive(false);
                     centerTiles.Remove(tile);
-                }
-                else 
-                {
-                    float rand2 = Random.Range(0f,3f);
-                    if(rand2 <= 1f)
-                    {
-                        centerTiles[i].SetActive(true);
-                    } 
-                }
+                } 
                 
+            }
+            else
+            {
+                float rand2 = Random.Range(0f,1f);
+                if(rand2 <= 1f)
+                {
+                    tile.SetActive(true);
+                }
             }
         }
 
