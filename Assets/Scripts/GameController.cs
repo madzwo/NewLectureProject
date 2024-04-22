@@ -48,6 +48,11 @@ public class GameController : MonoBehaviour
             orangeFlags.Add(flag);
         }
 
+        DragFlags(greenFlags);
+        DragFlags(yellowFlags);
+        DragFlags(blueFlags);
+        DragFlags(orangeFlags);
+
         DeleteClosestFlag(greenFlags);
         DeleteClosestFlag(yellowFlags);
         DeleteClosestFlag(blueFlags);
@@ -70,6 +75,48 @@ public class GameController : MonoBehaviour
                 GameObject deadFlag = flags[1];
                 Destroy(deadFlag);
                 flags.RemoveAt(1);
+            }
+        }
+    }
+
+    // mouse input if you are close enough click and drag flag
+    private void DragFlags(List<GameObject> flags)
+    {
+        if (flags.Count == 0)
+        {
+            return;
+        }
+        if(flags.Count == 1)
+        {
+            if(Input.GetMouseButton(0) && Vector2.Distance(flags[0].transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < .2)
+            {
+                flags[0].transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                // set Z position based on the camera's viewport
+                float desiredZ = Camera.main.ScreenToWorldPoint(Input.mousePosition).z + Camera.main.nearClipPlane;
+                Vector3 newPosition = flags[0].transform.position;
+                newPosition.z = desiredZ;
+                flags[0].transform.position = newPosition;
+            }
+        }
+        if(flags.Count == 2)
+        {
+            if(Input.GetMouseButton(0) && Vector2.Distance(flags[0].transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < .2)
+            {
+                flags[0].transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                // set Z position based on the camera's viewport
+                float desiredZ = Camera.main.ScreenToWorldPoint(Input.mousePosition).z + Camera.main.nearClipPlane;
+                Vector3 newPosition = flags[0].transform.position;
+                newPosition.z = desiredZ;
+                flags[0].transform.position = newPosition;
+            }
+            else if(Input.GetMouseButton(0) && Vector2.Distance(flags[1].transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < .2)
+            {
+                flags[1].transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                // set Z position based on the camera's viewport
+                float desiredZ = Camera.main.ScreenToWorldPoint(Input.mousePosition).z + Camera.main.nearClipPlane;
+                Vector3 newPosition = flags[1].transform.position;
+                newPosition.z = desiredZ;
+                flags[1].transform.position = newPosition;
             }
         }
     }
