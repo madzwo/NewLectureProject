@@ -36,6 +36,10 @@ public class Base : MonoBehaviour
     public int rank;
     public TMP_Text rankText;
 
+    private bool poweredUp;
+    private int specialBillionCount;
+
+    public GameObject purpleCircle;
 
     void Awake()
     {
@@ -43,19 +47,39 @@ public class Base : MonoBehaviour
         timeTillFire = fireRate;
         shootingDistance = 2f;
         health = maxHealth;
+        poweredUp = false;
+        specialBillionCount = 0;
     }
 
     void Update()
     {
-        // Base shooting
+        // spawn billions
         if (timeUntilSpawn <= 0)
         {
-            Instantiate(billion, spawnPoint.gameObject.transform.position, Quaternion.identity);
-            timeUntilSpawn = spawnRate;
+            if(poweredUp)
+            {
+                GameObject currentBillion = Instantiate(billion, spawnPoint.gameObject.transform.position, Quaternion.identity);
+                Billion billionScript = currentBillion.GetComponent<Billion>();
+                billionScript.PowerUp();
+
+                timeUntilSpawn = spawnRate;
+                specialBillionCount++;
+                if(specialBillionCount >= 3)
+                {
+                    poweredUp = false;
+                    purpleCircle.SetActive(false);
+
+                }
+            }
+            else 
+            {
+                Instantiate(billion, spawnPoint.gameObject.transform.position, Quaternion.identity);
+                timeUntilSpawn = spawnRate;
+            }
         }
         timeUntilSpawn -= Time.deltaTime;
-        Fire();
 
+        Fire();
 
         // fill health and xp bars
         healthBar.fillAmount = health / maxHealth;
@@ -194,5 +218,12 @@ public class Base : MonoBehaviour
     public int GetRank()
     {
         return rank;
+    }
+
+    public void PowerUp()
+    {
+        poweredUp = true;
+        specialBillionCount = 0;
+        purpleCircle.SetActive(true);
     }
 }

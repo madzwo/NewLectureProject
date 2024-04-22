@@ -11,23 +11,45 @@ public class PowerUp : MonoBehaviour
 
     private int billionsRequired = 3;
 
+    private Base greenScript;
+    private Base yellowScript;
+    private Base blueScript;
+    private Base orangeScript;
+
+
+    void Start()
+    {
+        GameObject greenBase = GameObject.FindGameObjectWithTag("greenBase");
+        greenScript = greenBase.GetComponent<Base>();
+        GameObject yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
+        yellowScript = yellowBase.GetComponent<Base>();
+        GameObject blueBase = GameObject.FindGameObjectWithTag("blueBase");
+        blueScript = blueBase.GetComponent<Base>();
+        GameObject orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
+        orangeScript = orangeBase.GetComponent<Base>();
+    }
+
     void Update()
     {
         if(greenBillionCount >= billionsRequired)
         {
             Destroy(gameObject);
+            greenScript.PowerUp();
         }
         if(yellowBillionCount >= billionsRequired)
         {
             Destroy(gameObject);
+            yellowScript.PowerUp();
         }
         if(blueBillionCount >= billionsRequired)
         {
             Destroy(gameObject);
+            blueScript.PowerUp();
         }
         if(orangeBillionCount >= billionsRequired)
         {
             Destroy(gameObject);
+            orangeScript.PowerUp();
         }
     }
 

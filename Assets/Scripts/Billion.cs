@@ -37,6 +37,9 @@ public class Billion : MonoBehaviour
 
     public TMP_Text rankText;
 
+    public GameObject purpleCircle;
+    private bool poweredUp;
+
 
     void Start()
     {        
@@ -72,6 +75,13 @@ public class Billion : MonoBehaviour
         maxHealth = rank * 2.5f;
         health = maxHealth;
 
+    }
+
+    public void PowerUp()
+    {
+        purpleCircle.SetActive(true);
+        poweredUp = true;
+        fireRate *= 0.3f;
     }
 
     void Update()
