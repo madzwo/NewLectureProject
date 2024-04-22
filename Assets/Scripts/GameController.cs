@@ -48,65 +48,28 @@ public class GameController : MonoBehaviour
             orangeFlags.Add(flag);
         }
 
-        // when a third flag is placed, deletes the closest one and removes it from the list
-        if (greenFlags.Count > 2)
+        DeleteClosestFlag(greenFlags);
+        DeleteClosestFlag(yellowFlags);
+        DeleteClosestFlag(blueFlags);
+        DeleteClosestFlag(orangeFlags);
+    }
+       
+    // when a third flag is placed, deletes the closest one and removes it from the list
+    private void DeleteClosestFlag(List<GameObject> flags)
+    {
+        if (flags.Count > 2)
         {
-            if (Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), greenFlags[0].transform.position) < Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), greenFlags[1].transform.position))
+            if (Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), flags[0].transform.position) < Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), flags[1].transform.position))
             {
-                GameObject deadFlag = greenFlags[0];
+                GameObject deadFlag = flags[0];
                 Destroy(deadFlag);
-                greenFlags.RemoveAt(0);
+                flags.RemoveAt(0);
             }
             else 
             {
-                GameObject deadFlag = greenFlags[1];
+                GameObject deadFlag = flags[1];
                 Destroy(deadFlag);
-                greenFlags.RemoveAt(1);
-            }
-        }
-        if (yellowFlags.Count > 2)
-        {
-            if (Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), yellowFlags[0].transform.position) < Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), yellowFlags[1].transform.position))
-            {
-                GameObject deadFlag = yellowFlags[0];
-                Destroy(deadFlag);
-                yellowFlags.RemoveAt(0);
-            }
-            else 
-            {
-                GameObject deadFlag = yellowFlags[1];
-                Destroy(deadFlag);
-                yellowFlags.RemoveAt(1);
-            }
-        }
-        if (blueFlags.Count > 2)
-        {
-            if (Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), blueFlags[0].transform.position) < Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), blueFlags[1].transform.position))
-            {
-                GameObject deadFlag = blueFlags[0];
-                Destroy(deadFlag);
-                blueFlags.RemoveAt(0);
-            }
-            else 
-            {
-                GameObject deadFlag = blueFlags[1];
-                Destroy(deadFlag);
-                blueFlags.RemoveAt(1);
-            }
-        }
-        if (orangeFlags.Count > 2)
-        {
-            if (Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), orangeFlags[0].transform.position) < Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), orangeFlags[1].transform.position))
-            {
-                GameObject deadFlag = orangeFlags[0];
-                Destroy(deadFlag);
-                orangeFlags.RemoveAt(0);
-            }
-            else 
-            {
-                GameObject deadFlag = orangeFlags[1];
-                Destroy(deadFlag);
-                orangeFlags.RemoveAt(1);
+                flags.RemoveAt(1);
             }
         }
     }
