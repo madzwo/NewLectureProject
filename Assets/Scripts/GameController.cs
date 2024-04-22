@@ -16,11 +16,6 @@ public class GameController : MonoBehaviour
     public List<GameObject> blueFlags = new List<GameObject>();
     public List<GameObject> orangeFlags = new List<GameObject>();
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         //makes mouse position work with camera    
@@ -28,32 +23,32 @@ public class GameController : MonoBehaviour
         flagSpawnPoint.y += (float)0.375;
         flagSpawnPoint.z = 0;
         
-        //mouse + W to instantiate green flag and add it to the list
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.W))
+        //mouse + G to instantiate green flag and add it to the list
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.G))
         {
             GameObject flag = Instantiate(greenFlag, flagSpawnPoint, Quaternion.identity);
             greenFlags.Add(flag);
         }
-        //mouse + S to instantiate yellow flag and add it to the list
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.S))
+        //mouse + Y to instantiate yellow flag and add it to the list
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.Y))
         {
             GameObject flag = Instantiate(yellowFlag, flagSpawnPoint, Quaternion.identity);
             yellowFlags.Add(flag);
         }
-        //mouse + E to instantiate blue flag and add it to the list
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.E))
+        //mouse + B to instantiate blue flag and add it to the list
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.B))
         {
             GameObject flag = Instantiate(blueFlag, flagSpawnPoint, Quaternion.identity);
             blueFlags.Add(flag);
         }
-        //mouse + D to instantiate orange flag and add it to the list
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.D))
+        //mouse + O to instantiate orange flag and add it to the list
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.O))
         {
             GameObject flag = Instantiate(orangeFlag, flagSpawnPoint, Quaternion.identity);
             orangeFlags.Add(flag);
         }
 
-        //when a third flag is placed, deletes the first one placed and removes it from the list
+        //when a third flag is placed, deletes the closest one and removes it from the list
         if (greenFlags.Count > 2)
         {
             if (Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), greenFlags[0].transform.position) < Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), greenFlags[1].transform.position))

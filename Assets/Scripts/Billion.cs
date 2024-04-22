@@ -40,13 +40,13 @@ public class Billion : MonoBehaviour
 
     void Start()
     {        
-        shootingDistance = 2f;
-
+        // get all bases with tags
         greenBase = GameObject.FindGameObjectWithTag("greenBase");
         yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
         orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
         blueBase = GameObject.FindGameObjectWithTag("blueBase");
 
+        // billion spawns at the rank of its base 
         if(gameObject.tag == "greenBillion")
         {
             rank = greenBase.GetComponent<Base>().GetRank();
@@ -64,8 +64,11 @@ public class Billion : MonoBehaviour
             rank = blueBase.GetComponent<Base>().GetRank();
         }
         
+        // billion rank UI
         rankText.SetText("" + rank.ToString());
 
+        // stats
+        shootingDistance = 2f;
         maxHealth = rank * 2.5f;
         health = maxHealth;
 
@@ -75,6 +78,8 @@ public class Billion : MonoBehaviour
     {
         AimTurret();
 
+
+        // fills list "flags" with all flags of corresponding color
         if(gameObject.tag == "greenBillion")
         {
             flags = GameObject.FindGameObjectsWithTag("greenFlag");
@@ -133,8 +138,9 @@ public class Billion : MonoBehaviour
             {
                 billionSpeed = 0;
             } 
-        } 
+        }
 
+        // click billions to do damage
         if(Input.GetMouseButtonDown(0) && Vector2.Distance(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < .1)
         {
             TakeDamage(1);
@@ -168,9 +174,8 @@ public class Billion : MonoBehaviour
             }
         }
     } 
-    
 
-    
+    // fire bullet at nearest enemy
     public void Fire(GameObject target, Vector3 direction)
     {
         if (Vector2.Distance(this.transform.position, target.transform.position) < shootingDistance)
@@ -208,7 +213,6 @@ public class Billion : MonoBehaviour
         }
 
         // add all enemy bases to list of enemys
-
         if (gameObject.tag != "greenBillion")
         {
             if (GameObject.FindGameObjectWithTag("greenBase") != null)
@@ -246,13 +250,14 @@ public class Billion : MonoBehaviour
     }
 
     public GameObject FindClosestBillion(List<GameObject> billions)
-    {
+    {        
+        // if no enemies on the map
         if(billions.Count == 0)
         {
             return null;
         }
-
         
+        // loop through enemies and find closest
         GameObject target = billions[0];
         for (int i = 0; i < billions.Count - 1; i++)
         {
@@ -267,14 +272,14 @@ public class Billion : MonoBehaviour
         return target;
     }
 
+    // Take damage when collide with enemy bullet
     public void TakeDamage(float dmg)
     {
         health -= dmg;
-
         float circleFill = 0.0f;
-
         float healthPercentage = health/maxHealth;
 
+        // fill white circle base on health
         if (healthPercentage <= 1.0f && healthPercentage > 0.9f)
         {
             circleFill = 0.95f;
@@ -319,6 +324,8 @@ public class Billion : MonoBehaviour
 
     }
 
+    // bullets are triggers
+    // call TakeDamage if hit by enemy billion bullet or enemy base bullet
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((collision.tag == "greenBullet" || collision.tag == "greenBaseBullet") && gameObject.tag != "greenBillion")
@@ -329,7 +336,6 @@ public class Billion : MonoBehaviour
                 float greenRank = greenBase.GetComponent<Base>().GetRank();
                 float dmg = greenRank / 2.0f;
                 TakeDamage(dmg);
-                Debug.Log("green bullet did damage: " + dmg);
             }
         }
         if ((collision.tag == "yellowBullet" || collision.tag == "yellowBaseBullet") && gameObject.tag != "yellowBillion")
@@ -363,6 +369,7 @@ public class Billion : MonoBehaviour
             }
         }
 
+        // when billion dies, give xp to the corresponding base of the enemy that killed it
         if(health <= 0) 
         {
             if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "greenBaseBullet")
@@ -397,7 +404,6 @@ public class Billion : MonoBehaviour
                     blueBaseScript.xp += 1;
                 }
             }
-            Debug.Log("billion died");
             health = 0;
             Destroy(gameObject);
         }    

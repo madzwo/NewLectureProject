@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
+        // bullet life
         if (timeTillDeath <= 0)
         {
             Destroy(gameObject);
@@ -24,6 +25,8 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    // if bullet collides with enemy billion or enemy base it destroys itself
+    // damage done in the billion script and base script
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(gameObject.tag == "greenBullet" || gameObject.tag == "greenBaseBullet")
