@@ -18,37 +18,37 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        //makes mouse position work with camera    
+        // makes mouse position work with camera    
         flagSpawnPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         flagSpawnPoint.y += (float)0.375;
         flagSpawnPoint.z = 0;
         
-        //mouse + G to instantiate green flag and add it to the list
+        // mouse + G to instantiate green flag and add it to the list
         if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.G))
         {
             GameObject flag = Instantiate(greenFlag, flagSpawnPoint, Quaternion.identity);
             greenFlags.Add(flag);
         }
-        //mouse + Y to instantiate yellow flag and add it to the list
+        // mouse + Y to instantiate yellow flag and add it to the list
         if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.Y))
         {
             GameObject flag = Instantiate(yellowFlag, flagSpawnPoint, Quaternion.identity);
             yellowFlags.Add(flag);
         }
-        //mouse + B to instantiate blue flag and add it to the list
+        // mouse + B to instantiate blue flag and add it to the list
         if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.B))
         {
             GameObject flag = Instantiate(blueFlag, flagSpawnPoint, Quaternion.identity);
             blueFlags.Add(flag);
         }
-        //mouse + O to instantiate orange flag and add it to the list
+        // mouse + O to instantiate orange flag and add it to the list
         if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.O))
         {
             GameObject flag = Instantiate(orangeFlag, flagSpawnPoint, Quaternion.identity);
             orangeFlags.Add(flag);
         }
 
-        //when a third flag is placed, deletes the closest one and removes it from the list
+        // when a third flag is placed, deletes the closest one and removes it from the list
         if (greenFlags.Count > 2)
         {
             if (Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), greenFlags[0].transform.position) < Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), greenFlags[1].transform.position))

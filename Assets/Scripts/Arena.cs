@@ -73,6 +73,7 @@ public class Arena : MonoBehaviour
 
     void Start()
     {
+        // add all border tiles to the list
         borderTiles.Add(A1);
         borderTiles.Add(B1);
         borderTiles.Add(C1);
@@ -103,8 +104,7 @@ public class Arena : MonoBehaviour
         borderTiles.Add(E8);
         borderTiles.Add(E9);
 
-
-
+        // loop through and set 1/3 to be active
         for (int i = 0; i < borderTiles.Count; i++)
         {
             float rand = Random.Range(0f,3f);
@@ -113,6 +113,9 @@ public class Arena : MonoBehaviour
                 borderTiles[i].SetActive(true);
             }
         }
+
+
+        // make sure there is no weird corner section that's blocked off
 
         //corners
         if(A2.activeSelf && B1.activeSelf)
@@ -131,6 +134,9 @@ public class Arena : MonoBehaviour
         {
             E10.SetActive(true);
         }
+
+
+        // makes top and bottom less blocky and weird
 
         //top
         if (A4.activeSelf)
@@ -160,34 +166,29 @@ public class Arena : MonoBehaviour
             E7.SetActive(true);
         }
 
-
-
-
-
+        // add all center tiles to list
         centerTiles.Add(B2);
         centerTiles.Add(B3);
         centerTiles.Add(B4);
         centerTiles.Add(B5);
   
-
         centerTiles.Add(C2);
         centerTiles.Add(C3);
         centerTiles.Add(C4);
         centerTiles.Add(C5);
-
 
         centerTiles.Add(D2);
         centerTiles.Add(D3);
         centerTiles.Add(D4);
         centerTiles.Add(D5);
 
+        // add bases to list
         bases.Add(greenBase);
         bases.Add(yellowBase);
         bases.Add(orangeBase);
         bases.Add(blueBase);
 
-
-
+        // loop through center tiles and place all four bases and occasional center tiles
         for (int i = 0; i < centerTiles.Count; i++)
         {
             float randTile = Random.Range(0f, (float) (centerTiles.Count-1));
@@ -196,8 +197,6 @@ public class Arena : MonoBehaviour
 
             if(bases.Count > 0)
             {
-                
-
                 GameObject currentBase = null;
 
                     if(bases.Count == 1)
@@ -279,15 +278,13 @@ public class Arena : MonoBehaviour
                             bases.Remove(currentBase);
                         }
                     }
-                    
-                 
+
                 if(currentBase != null)
                 {
                     Instantiate(currentBase, tile.transform.position, tile.transform.rotation);
                     tile.SetActive(false);
                     centerTiles.Remove(tile);
                 } 
-                
             }
             else
             {
@@ -298,11 +295,5 @@ public class Arena : MonoBehaviour
                 }
             }
         }
-
-    }
-
-    void Update()
-    {
-        
     }
 }
