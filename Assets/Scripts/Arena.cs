@@ -56,7 +56,6 @@ public class Arena : MonoBehaviour
     public GameObject D4;
     public GameObject D5;
 
-
     public List<GameObject> centerTiles = new List<GameObject>();
 
     public GameObject greenBase;
@@ -68,7 +67,16 @@ public class Arena : MonoBehaviour
 
     public float tileHalfLength = .5f;
 
+    //powerUp
+    public GameObject a1;
+    public GameObject a2;
+    public GameObject a3;
+    public GameObject b1;
+    public GameObject b2;
+    public GameObject b3;
 
+    public GameObject powerUp;
+    private bool powerUpIsSpawned = false;
 
 
     void Start()
@@ -294,6 +302,39 @@ public class Arena : MonoBehaviour
                     tile.SetActive(true);
                 }
             }
+        }
+    }
+
+    public void Update()
+    {
+        if (!powerUpIsSpawned)
+        {
+            float rand3 = Random.Range(0f,6f);
+            if(rand3 <= 1f)
+            {
+                Instantiate(powerUp, a1.transform.position, a1.transform.rotation);
+            }
+            else if (rand3 <= 2f)
+            {
+                Instantiate(powerUp, a2.transform.position, a2.transform.rotation);
+            }
+            else if (rand3 <= 3f)
+            {
+                Instantiate(powerUp, a3.transform.position, a3.transform.rotation);
+            }
+            else if (rand3 <= 4f)
+            {
+                Instantiate(powerUp, b1.transform.position, b1.transform.rotation);
+            }
+            else if (rand3 <= 5f)
+            {
+                Instantiate(powerUp, b2.transform.position, b2.transform.rotation);
+            }
+            else 
+            {
+                Instantiate(powerUp, b3.transform.position, b3.transform.rotation);
+            }
+            powerUpIsSpawned = true;
         }
     }
 }
