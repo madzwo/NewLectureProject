@@ -3881,6 +3881,14 @@ MonoBehaviour:
   blueBase: {fileID: 8442975363994804319, guid: 37fbf4573c007424eb45df41c0d9d652, type: 3}
   bases: []
   tileHalfLength: 0.5
+  a1: {fileID: 276227985}
+  a2: {fileID: 280493950}
+  a3: {fileID: 814375903}
+  b1: {fileID: 1319384233}
+  b2: {fileID: 1108892466}
+  b3: {fileID: 627097527}
+  powerUp: {fileID: 7325744649114243134, guid: 3b0402082c00846c49f22f1fa97e9dc9, type: 3}
+  powerUpSpawnRate: 250
 --- !u!1001 &1985323910
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -407,6 +407,11 @@ public class Billion : MonoBehaviour
             health = 0;
             Destroy(gameObject);
         }    
+
+        // if (collision.gameObject.tag == "powerUp")
+        // {
+        //     Destroy(collision.gameObject);
+        // }
     }
 }
 

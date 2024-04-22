@@ -78,6 +78,9 @@ public class Arena : MonoBehaviour
     public GameObject powerUp;
     private bool powerUpIsSpawned = false;
 
+    public float powerUpSpawnRate;
+    private float powerUpTimeTillSpawn;
+
 
     void Start()
     {
@@ -303,38 +306,50 @@ public class Arena : MonoBehaviour
                 }
             }
         }
+
+        powerUpTimeTillSpawn = powerUpSpawnRate;
     }
 
     public void Update()
     {
         if (!powerUpIsSpawned)
         {
-            float rand3 = Random.Range(0f,6f);
-            if(rand3 <= 1f)
+            powerUpTimeTillSpawn -= 0.1f;
+            if (powerUpTimeTillSpawn <= 0f)
             {
-                Instantiate(powerUp, a1.transform.position, a1.transform.rotation);
+                float rand3 = Random.Range(0f,6f);
+                if(rand3 <= 1f)
+                {
+                    Instantiate(powerUp, a1.transform.position, a1.transform.rotation);
+                }
+                else if (rand3 <= 2f)
+                {
+                    Instantiate(powerUp, a2.transform.position, a2.transform.rotation);
+                }
+                else if (rand3 <= 3f)
+                {
+                    Instantiate(powerUp, a3.transform.position, a3.transform.rotation);
+                }
+                else if (rand3 <= 4f)
+                {
+                    Instantiate(powerUp, b1.transform.position, b1.transform.rotation);
+                }
+                else if (rand3 <= 5f)
+                {
+                    Instantiate(powerUp, b2.transform.position, b2.transform.rotation);
+                }
+                else 
+                {
+                    Instantiate(powerUp, b3.transform.position, b3.transform.rotation);
+                }
+                powerUpIsSpawned = true;
+                powerUpTimeTillSpawn = powerUpSpawnRate;
             }
-            else if (rand3 <= 2f)
-            {
-                Instantiate(powerUp, a2.transform.position, a2.transform.rotation);
-            }
-            else if (rand3 <= 3f)
-            {
-                Instantiate(powerUp, a3.transform.position, a3.transform.rotation);
-            }
-            else if (rand3 <= 4f)
-            {
-                Instantiate(powerUp, b1.transform.position, b1.transform.rotation);
-            }
-            else if (rand3 <= 5f)
-            {
-                Instantiate(powerUp, b2.transform.position, b2.transform.rotation);
-            }
-            else 
-            {
-                Instantiate(powerUp, b3.transform.position, b3.transform.rotation);
-            }
-            powerUpIsSpawned = true;
+        }
+
+        if (GameObject.FindGameObjectWithTag("powerUp") == null)
+        {
+            powerUpIsSpawned = false;
         }
     }
 }
