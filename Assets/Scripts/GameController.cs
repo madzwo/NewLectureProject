@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
         // makes mouse position work with camera    
         flagSpawnPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         flagSpawnPoint.y += (float)0.375;
-        flagSpawnPoint.z = 0;
+        flagSpawnPoint.z = -2f;
         
         // mouse + G to instantiate green flag and add it to the list
         if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.G))

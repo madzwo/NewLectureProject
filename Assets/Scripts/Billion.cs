@@ -335,6 +335,10 @@ public class Billion : MonoBehaviour
             {
                 float greenRank = greenBase.GetComponent<Base>().GetRank();
                 float dmg = greenRank / 2.0f;
+                if (collision.tag == "greenBaseBullet")
+                {
+                    dmg *= 2.0f;
+                }
                 TakeDamage(dmg);
             }
         }
@@ -345,6 +349,10 @@ public class Billion : MonoBehaviour
             {
                 float yellowRank = yellowBase.GetComponent<Base>().GetRank();
                 float dmg = yellowRank / 2.0f;
+                if (collision.tag == "yellowBaseBullet")
+                {
+                    dmg *= 2.0f;
+                }
                 TakeDamage(dmg);
             }
         }
@@ -355,6 +363,10 @@ public class Billion : MonoBehaviour
             {
                 float orangeRank = orangeBase.GetComponent<Base>().GetRank();
                 float dmg = orangeRank / 2.0f;
+                if (collision.tag == "orangeBaseBullet")
+                {
+                    dmg *= 2.0f;
+                }
                 TakeDamage(dmg);
             }
         }
@@ -365,6 +377,10 @@ public class Billion : MonoBehaviour
             {
                 float blueRank = blueBase.GetComponent<Base>().GetRank();
                 float dmg = blueRank / 2.0f;
+                if (collision.tag == "blueBaseBullet")
+                {
+                    dmg *= 2.0f;
+                }
                 TakeDamage(dmg);
             }
         }
@@ -407,11 +423,6 @@ public class Billion : MonoBehaviour
             health = 0;
             Destroy(gameObject);
         }    
-
-        // if (collision.gameObject.tag == "powerUp")
-        // {
-        //     Destroy(collision.gameObject);
-        // }
     }
 }
 
