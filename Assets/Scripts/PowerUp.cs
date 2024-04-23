@@ -19,14 +19,26 @@ public class PowerUp : MonoBehaviour
 
     void Start()
     {
-        GameObject greenBase = GameObject.FindGameObjectWithTag("greenBase");
-        greenScript = greenBase.GetComponent<Base>();
-        GameObject yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
-        yellowScript = yellowBase.GetComponent<Base>();
-        GameObject blueBase = GameObject.FindGameObjectWithTag("blueBase");
-        blueScript = blueBase.GetComponent<Base>();
-        GameObject orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
-        orangeScript = orangeBase.GetComponent<Base>();
+        if(GameObject.FindGameObjectWithTag("greenBase"))
+        {
+            GameObject greenBase = GameObject.FindGameObjectWithTag("greenBase");
+            greenScript = greenBase.GetComponent<Base>();
+        }
+        if(GameObject.FindGameObjectWithTag("yellowBase"))
+        {
+            GameObject yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
+            yellowScript = yellowBase.GetComponent<Base>();
+        }
+        if(GameObject.FindGameObjectWithTag("blueBase") != null)
+        {
+            GameObject blueBase = GameObject.FindGameObjectWithTag("blueBase");
+            blueScript = blueBase.GetComponent<Base>();
+        }
+        if(GameObject.FindGameObjectWithTag("orangeBase") != null)
+        {
+            GameObject orangeBase = GameObject.FindGameObjectWithTag("orangeBase");
+            orangeScript = orangeBase.GetComponent<Base>();
+        }
     }
 
     void Update()
@@ -34,22 +46,34 @@ public class PowerUp : MonoBehaviour
         if(greenBillionCount >= billionsRequired)
         {
             Destroy(gameObject);
-            greenScript.PowerUp();
+            if(greenScript != null)
+            {
+                greenScript.PowerUp();
+            }
         }
         if(yellowBillionCount >= billionsRequired)
         {
             Destroy(gameObject);
-            yellowScript.PowerUp();
+            if(yellowScript != null)
+            {
+                yellowScript.PowerUp();
+            }
         }
         if(blueBillionCount >= billionsRequired)
         {
             Destroy(gameObject);
-            blueScript.PowerUp();
+            if(blueScript != null)
+            {
+                blueScript.PowerUp();
+            }
         }
         if(orangeBillionCount >= billionsRequired)
         {
             Destroy(gameObject);
-            orangeScript.PowerUp();
+            if(orangeScript != null)
+            {
+                orangeScript.PowerUp();
+            }
         }
     }
 
