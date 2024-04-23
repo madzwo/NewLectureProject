@@ -41,6 +41,8 @@ public class Base : MonoBehaviour
 
     public GameObject purpleCircle;
 
+    public GameObject specialBaseBullet;
+
     void Awake()
     {
         timeUntilSpawn = 0;
@@ -111,12 +113,21 @@ public class Base : MonoBehaviour
             turretTransform.rotation = Quaternion.Slerp(turretTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
             // shoot with firerate and shooting distance
+            GameObject bullet;
             if (timeTillFire <= 0 && Vector2.Distance(transform.position, targetBillion.transform.position) < shootingDistance)
             {
-                GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.rotation);
+                if(poweredUp)
+                {
+                    Debug.Log("powered up bullet");
+                    bullet = Instantiate(specialBaseBullet, firePoint.transform.position, firePoint.rotation);
+                }
+                else
+                {
+                    bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.rotation);
+                }
                 bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * bulletSpeed, ForceMode2D.Impulse);
                 timeTillFire = fireRate;
-            } 
+            }
             else
             {
                 timeTillFire -= Time.deltaTime;

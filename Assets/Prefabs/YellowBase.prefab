@@ -749,6 +749,7 @@ MonoBehaviour:
   rank: 1
   rankText: {fileID: 5212252817881314989}
   purpleCircle: {fileID: 8712423338093979424}
+  specialBaseBullet: {fileID: 7759564528025836682, guid: 16543798bbced4251a26fa2f908ea550, type: 3}
 --- !u!50 &5603027653123759988
 Rigidbody2D:
   serializedVersion: 4

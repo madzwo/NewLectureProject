@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
         }  
-        if(gameObject.tag == "yellowBullet" || gameObject.tag == "yellowBaseBullet")
+        else if(gameObject.tag == "yellowBullet" || gameObject.tag == "yellowBaseBullet")
         {
             if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border" 
                 || collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "blueBase")
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
         } 
-        if(gameObject.tag == "orangeBullet" || gameObject.tag == "orangeBaseBullet")
+        else if(gameObject.tag == "orangeBullet" || gameObject.tag == "orangeBaseBullet")
         {
             if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "blueBillion" || collision.gameObject.tag == "border" 
                 || collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "yellowBase" || collision.gameObject.tag == "blueBase")
@@ -53,13 +53,13 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
         }   
-        if(gameObject.tag == "blueBullet" || gameObject.tag == "blueBaseBullet")
+        else if(gameObject.tag == "blueBullet" || gameObject.tag == "blueBaseBullet")
         {
             if (collision.gameObject.tag == "greenBillion" || collision.gameObject.tag == "orangeBillion" || collision.gameObject.tag == "yellowBillion" || collision.gameObject.tag == "border"
                 || collision.gameObject.tag == "greenBase" || collision.gameObject.tag == "orangeBase" || collision.gameObject.tag == "yellowBase")
             {
                 Destroy(gameObject);
             }
-        }  
+        }
     }
 }

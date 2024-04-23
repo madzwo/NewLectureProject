@@ -42,11 +42,15 @@ public class Billion : MonoBehaviour
 
     public GameObject specialBullet;
     public float specialBulletDamage;
+    public float specialBaseBulletDamage;
+
 
 
     void Start()
     {        
         specialBulletDamage = 1.0f;
+        specialBaseBulletDamage = 2.0f;
+
 
         // get all bases with tags
         greenBase = GameObject.FindGameObjectWithTag("greenBase");
@@ -88,7 +92,7 @@ public class Billion : MonoBehaviour
         poweredUp = true;
         fireRate *= 0.2f;
         maxHealth = rank * 5f;
-        health = health;
+        health = maxHealth;
     }
 
     void Update()
@@ -353,6 +357,10 @@ public class Billion : MonoBehaviour
     // call TakeDamage if hit by enemy billion bullet or enemy base bullet
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(!poweredUp && collision.tag == "specialBaseBullet")
+        {
+            TakeDamage(specialBaseBulletDamage);
+        }
         if(!poweredUp && collision.tag == "specialBullet")
         {
             TakeDamage(specialBulletDamage);
