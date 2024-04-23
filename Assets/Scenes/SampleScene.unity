@@ -1191,6 +1191,8 @@ MonoBehaviour:
   yellowFlags: []
   blueFlags: []
   orangeFlags: []
+  lineMaterial: {fileID: 0}
+  lineRenderer: {fileID: 6815264629377757136, guid: 24d4f681e20ee4b458f8a34d677d6555, type: 3}
 --- !u!1 &588481843
 GameObject:
   m_ObjectHideFlags: 0
