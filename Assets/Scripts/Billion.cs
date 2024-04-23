@@ -40,9 +40,14 @@ public class Billion : MonoBehaviour
     public GameObject purpleCircle;
     private bool poweredUp;
 
+    public GameObject specialBullet;
+    public float specialBulletDamage;
+
 
     void Start()
     {        
+        specialBulletDamage = 1.0f;
+
         // get all bases with tags
         greenBase = GameObject.FindGameObjectWithTag("greenBase");
         yellowBase = GameObject.FindGameObjectWithTag("yellowBase");
@@ -81,13 +86,14 @@ public class Billion : MonoBehaviour
     {
         purpleCircle.SetActive(true);
         poweredUp = true;
-        fireRate *= 0.3f;
+        fireRate *= 0.2f;
+        maxHealth = rank * 5f;
+        health = health;
     }
 
     void Update()
     {
         AimTurret();
-
 
         // fills list "flags" with all flags of corresponding color
         if(gameObject.tag == "greenBillion")
@@ -190,7 +196,16 @@ public class Billion : MonoBehaviour
     {
         if (Vector2.Distance(this.transform.position, target.transform.position) < shootingDistance)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, turretTransform.rotation);
+            GameObject bullet;
+            if (poweredUp)
+            {
+                bullet = Instantiate(specialBullet, firePoint.transform.position, turretTransform.rotation);
+
+            }
+            else
+            {
+                bullet = Instantiate(bulletPrefab, firePoint.transform.position, turretTransform.rotation);
+            }
             bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed, ForceMode2D.Impulse);
 
         }
@@ -338,6 +353,10 @@ public class Billion : MonoBehaviour
     // call TakeDamage if hit by enemy billion bullet or enemy base bullet
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(!poweredUp && collision.tag == "specialBullet")
+        {
+            TakeDamage(specialBulletDamage);
+        }
         if ((collision.tag == "greenBullet" || collision.tag == "greenBaseBullet") && gameObject.tag != "greenBillion")
         {
             greenBase = GameObject.FindGameObjectWithTag("greenBase");

@@ -462,6 +462,7 @@ MonoBehaviour:
   maxHealth: 0
   rankText: {fileID: 1355826289648124523}
   purpleCircle: {fileID: 6760748755868991240}
+  specialBullet: {fileID: 7109592236991123235, guid: d5559f99cc4954848bfbd8672db97e7b, type: 3}
 --- !u!1 &6456708015401297541
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ TagManager:
   - blueBaseBullet
   - orangeBaseBullet
   - powerUp
+  - specialBullet
   layers:
   - Default
   - TransparentFX

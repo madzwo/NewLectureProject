@@ -180,32 +180,36 @@ public class Base : MonoBehaviour
     // bases take damage from all three opposing teams' bullets
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.tag == "specialBullet")
+        {
+            health -= 0.5f;
+        }
         if (gameObject.tag == "greenBase")
         {
             if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "blueBullet")
             {
-                health -= 1;
+                health -= 1.0f;
             }
         }
         if (gameObject.tag == "yellowBase")
         {
             if (collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "blueBullet")
             {
-                health -= 1;
+                health -= 1.0f;
             }
         }
         if (gameObject.tag == "orangeBase")
         {
             if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "greenBullet" || collision.gameObject.tag == "blueBullet")
             {
-                health -= 1;
+                health -= 1.0f;
             }
         }
         if (gameObject.tag == "blueBase")
         {
             if (collision.gameObject.tag == "yellowBullet" || collision.gameObject.tag == "orangeBullet" || collision.gameObject.tag == "greenBullet")
             {
-                health -= 1;
+                health -= 1.0f;
             }
         }
 
